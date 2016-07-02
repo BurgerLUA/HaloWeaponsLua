@@ -1,0 +1,130 @@
+
+
+function EFFECT:Init(data)
+	
+	
+	
+	
+	if not IsValid(data:GetEntity()) then return end
+	
+	self.WeaponEnt = data:GetEntity()
+	self.Attachment = data:GetAttachment()
+	
+	if self.WeaponEnt == nil or self.WeaponEnt:GetOwner() == nil or self.WeaponEnt:GetOwner():GetVelocity() == nil then 
+		return
+	else
+	
+	self.Position = self:GetTracerShootPos(data:GetOrigin(), self.WeaponEnt, self.Attachment)
+	self.Forward = data:GetNormal()
+	self.Angle = self.Forward:Angle()
+	self.Right = self.Angle:Right()
+	
+	local AddVel = self.WeaponEnt:GetOwner():GetVelocity()
+	
+	local emitter = ParticleEmitter(self.Position)
+	if emitter != nil then	
+		local particle = emitter:Add( "effects/h2_carbine_muzzle", self.Position - self.Forward * 0)
+		if particle != nil then
+	
+			particle:SetVelocity( 0 * self.Forward + 0 * VectorRand() +0 * AddVel )
+			particle:SetGravity( Vector( 0, 0, 0 ) )
+			particle:SetAirResistance( 0 )
+
+			particle:SetDieTime( math.Rand( 0.1, 0.1 ) )
+
+			particle:SetStartSize( math.random( 12, 15 ) )
+			particle:SetEndSize( 15 )
+				particle:SetStartAlpha( math.Rand( 255, 255 ) )
+				particle:SetEndAlpha( 0 )
+
+			particle:SetRoll( math.Rand( 1380, 480 ) )
+			particle:SetRollDelta( math.Rand( -12332, 1 ) )
+			
+			particle:SetColor( 255, 93, 0 )
+			
+		
+		for i = 1,4 do
+			local particle = emitter:Add( "effects/h2_carbine_muzzle", self.Position )
+
+				particle:SetVelocity( 120 * i * self.Forward + 0 * VectorRand() + AddVel )
+				particle:SetAirResistance( 400 )
+				particle:SetGravity( Vector(0, 0, math.Rand(0, 0) ) )
+
+				particle:SetDieTime( math.Rand( 2.5, 1.0 ) )
+
+				particle:SetStartAlpha( math.Rand( 4, 4 ) )
+				particle:SetEndAlpha( 4 )
+
+				particle:SetStartSize( math.Rand( 2, 2 ) )
+				particle:SetEndSize( math.Rand( 0, 0 ) )
+
+				particle:SetRoll( math.Rand( -25, 25 ) )
+				particle:SetRollDelta( math.Rand( -0.05, 0.05 ) )
+
+				particle:SetColor( 255, 93, 0 )
+				
+	
+		end
+		
+		if math.random( 1, 2 ) == 1 then
+
+			for j = 1,2 do
+
+				for i = -1,1,2 do 
+
+					local particle = emitter:Add( "effects/muzzleflash"..math.random( 1, 4 ), self.Position - 3 * self.Forward + 1 * j * i * self.Right)
+
+						particle:SetVelocity( 60 * j * i * self.Right + AddVel )
+						particle:SetGravity( AddVel )
+
+						particle:SetDieTime( 0.1 )
+
+						particle:SetStartAlpha( 150 )
+
+						particle:SetStartSize( 4 )
+						particle:SetEndSize( 4 * j )
+
+						particle:SetRoll( math.Rand( 180, 480 ) )
+						particle:SetRollDelta( math.Rand( -1, 1 ) )
+
+						particle:SetColor( 0, 0, 0 )	
+				end
+			end
+
+			for i = 1,2 do 
+
+				local particle = emitter:Add( "effects/muzzleflash"..math.random( 1, 4 ), self.Position + 8 * self.Forward )
+
+					particle:SetVelocity( 350 * self.Forward + 1.1 * AddVel )
+					particle:SetAirResistance( 160 )
+
+					particle:SetDieTime( 0.1 )
+
+					particle:SetStartAlpha( 160 )
+					particle:SetEndAlpha( 0 )
+
+					particle:SetStartSize( 10 )
+					particle:SetEndSize( 5 * i )
+
+					particle:SetRoll( math.Rand( 180, 480 ) )
+					particle:SetRollDelta( math.Rand( -1, 1) )
+
+					particle:SetColor( 0, 0, 0 )	
+			end
+		end
+		end
+	emitter:Finish()
+	end
+	end
+	
+end
+
+
+function EFFECT:Think()
+
+	return false
+end
+
+
+function EFFECT:Render()
+end
