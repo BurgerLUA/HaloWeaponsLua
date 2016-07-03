@@ -1,6 +1,6 @@
 if CLIENT then
-	killicon.Add( "weapon_halo_carbine", "vgui/hud/halo2_swep_ccarbine", Color( 255, 255, 255, 255 ) )
-	SWEP.WepSelectIcon 		= surface.GetTextureID("vgui/hud/halo2_swep_ccarbine")
+	killicon.Add( "weapon_halo_shotgun", "vgui/hud/halo2_swep_shotgun", Color( 255, 255, 255, 255 ) )
+	SWEP.WepSelectIcon 		= surface.GetTextureID("vgui/hud/halo2_swep_shotgun")
 end
 
 SWEP.Category				= "Halo 2 Weapons"
@@ -14,36 +14,36 @@ SWEP.CSSMoveSpeed			= 250 - 10
 SWEP.Spawnable				= true
 SWEP.AdminOnly				= false
 
-SWEP.Slot					= 4 - 1
+SWEP.Slot					= 3 - 1
 SWEP.SlotPos				= 1
 
-SWEP.ViewModel				= Model("models/weapons/V_halo_2_cov_carbine.mdl")
-SWEP.WorldModel				= Model("models/weapons/w_irifle.mdl")
+SWEP.ViewModel				= Model("models/weapons/v_halo_2_shotgun.mdl")
+SWEP.WorldModel				= Model("models/weapons/w_shotgun.mdl")
 SWEP.VModelFlip 			= false
 SWEP.HoldType				= "ar2"
 
-SWEP.Primary.Damage			= 25
-SWEP.Primary.NumShots		= 1
-SWEP.Primary.Sound			= Sound("halo2/covenant carbine/fire1.wav")
-SWEP.Primary.Cone			= 0
-SWEP.Primary.ClipSize		= 18
-SWEP.Primary.SpareClip		= 18*5
-SWEP.Primary.Delay			= 1/(250/60)
-SWEP.Primary.Ammo			= "css_762mm"
-SWEP.Primary.Automatic 		= false
+SWEP.Primary.Damage			= 150/12
+SWEP.Primary.NumShots		= 12
+SWEP.Primary.Sound			= Sound("halo2/shotgun/shot1.wav")
+SWEP.Primary.Cone			= 0.03
+SWEP.Primary.ClipSize		= 12
+SWEP.Primary.SpareClip		= 12*3
+SWEP.Primary.Delay			= 0.9
+SWEP.Primary.Ammo			= "css_12gauge"
+SWEP.Primary.Automatic 		= true
 
-SWEP.RecoilMul				= 1
+SWEP.RecoilMul				= 0.1
 SWEP.SideRecoilMul			= 0.1
-SWEP.VelConeMul				= 1.25
-SWEP.HeatMul				= 1
+SWEP.VelConeMul				= 0
+SWEP.HeatMul				= 0
 SWEP.CoolMul				= 1
 
-SWEP.HasScope 				= true
-SWEP.ZoomAmount 			= 4
+SWEP.HasScope 				= false
+SWEP.ZoomAmount 			= 0.25
 SWEP.HasCrosshair 			= false
 SWEP.HasCSSZoom 			= false
 
-SWEP.HasPumpAction 			= false
+SWEP.HasPumpAction 			= true
 SWEP.HasBoltAction 			= false
 SWEP.HasBurstFire 			= false
 SWEP.HasSilencer 			= false
@@ -52,39 +52,35 @@ SWEP.HasSideRecoil			= false
 SWEP.HasDownRecoil			= false
 SWEP.HasSpecialFire			= false
 
-SWEP.HasIronSights 			= false
+SWEP.HasIronSights 			= true
 SWEP.EnableIronCross		= true
 SWEP.HasGoodSights			= false
 SWEP.IronSightTime			= 0.125
-SWEP.IronSightsPos 			= Vector(-4, 0, -1.5)
+SWEP.IronSightsPos 			= Vector(-3, 0, 1)
 SWEP.IronSightsAng 			= Vector(0, 0, 0)
 
-SWEP.FatalHeadshot			= true
+SWEP.FatalHeadshot			= false
 
-SWEP.DamageFalloff			= 2000
+SWEP.DamageFalloff			= 300
 
-SWEP.TracerNames 			= {"h2_aniversary_carbine_beam","h2_aniversary_carbine_muzzle","h2_aniversary_carbine_muzzle_2","carbine_beam_effect"}
-
-SWEP.CustomScope			= Material("scopeutra/halo2_cov_carbine")
-SWEP.CustomScopeCOverride	= Color(0,255,255,100)
-
-SWEP.GetMagModel 			= Model("models/carbine_ammo.mdl")
-SWEP.MagDelayMod			= 0.25
-SWEP.MagMoveMod 			= Vector(0,-100,100)
-SWEP.MagAngMod				= Angle(0,90,0)
-
+SWEP.TracerNames 			= {"h2_shotty_muzzle"}
 
 SWEP.ShowWorldModel         = false
-SWEP.ViewModelBoneMods = {
-	["ValveBiped.Bip01_L_Finger2"] = { scale = Vector(1, 1, 1), pos = Vector(0, 0, 0), angle = Angle(0, 11.086, 0) },
-	["body"] = { scale = Vector(1, 1, 1), pos = Vector(-7.38, 1.998, -1.537), angle = Angle(-1.82, 0, 0) }
-}
+
 SWEP.WElements = {
-	["carbine"] = { type = "Model", model = "models/carbine_h2.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(13.362, 0.814, -4.283), angle = Angle(178.432, -91.481, 14.428), size = Vector(0.962, 0.962, 0.962), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
+	["shotgun"] = { type = "Model", model = "models/hshotgun.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(4.218, 0.853, 0), angle = Angle(-83.193, -148.736, -59.64), size = Vector(1.041, 1.041, 1.041), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
 }
 
-SWEP.Variable01 = Material("crosshair/covenant_carb_h2")
-SWEP.Variable02 = Material("crosshair/plasma_rifle")
+SWEP.ViewModelBoneMods = {
+	["ValveBiped.Bip01_L_Finger1"] = { scale = Vector(1, 1, 1), pos = Vector(0.62, 0, 0), angle = Angle(0, 0, 0) },
+	["ValveBiped.Bip01_L_Finger4"] = { scale = Vector(1, 1, 1), pos = Vector(1.883, 0, 0), angle = Angle(-1.19, -36.681, 0) },
+	["body"] = { scale = Vector(1, 1, 1), pos = Vector(-9.745, 0, 0.266), angle = Angle(0.002, 1.648, -1.875) },
+	["ValveBiped.Bip01_L_Finger2"] = { scale = Vector(1, 1, 1), pos = Vector(0.671, 0, 0), angle = Angle(0, 0, 0) },
+	["ValveBiped.Bip01_L_Finger3"] = { scale = Vector(1, 1, 1), pos = Vector(0.778, 0, 0), angle = Angle(0, 0, 0) }
+}
+
+
+SWEP.Variable01 = Material("crosshair/shotgun_h2")
 
 function SWEP:DrawSpecial(ConeToSend)
 
@@ -105,27 +101,14 @@ function SWEP:DrawSpecial(ConeToSend)
 	
 		surface.SetDrawColor(Color(255,0,0,150))
 		surface.SetMaterial(self.Variable01)
-		surface.DrawTexturedRectRotated(XRound,YRound,32,32,0)
+		surface.DrawTexturedRectRotated(XRound,YRound,64,64,0)
 		
-		surface.SetMaterial(self.Variable01)
-		surface.SetDrawColor(Color(255,0,0,math.min(100,0 + ConeToSend*2)))
-		surface.DrawTexturedRectRotated(XRound,YRound,32 + ConeToSend,32 + ConeToSend,0)
-		
-		if TargetBone then
-			if TargetHead:Distance(HitPos) <= 8 then
-				surface.DrawCircle(XRound,YRound,0.25, Color(255,0,0,150) )
-			end
-		end
 		
 	else
 	
 		surface.SetDrawColor(Color(0,255,255,150))
 		surface.SetMaterial(self.Variable01)
-		surface.DrawTexturedRectRotated(XRound,YRound,32,32,0)
-		
-		surface.SetMaterial(self.Variable01)
-		surface.SetDrawColor(Color(0,255,255,math.min(100,0 + ConeToSend*2)))
-		surface.DrawTexturedRectRotated(XRound,YRound,32 + ConeToSend,32 + ConeToSend,0)
+		surface.DrawTexturedRectRotated(XRound,YRound,64,64,0)
 		
 	end
 	

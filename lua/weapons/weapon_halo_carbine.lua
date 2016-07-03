@@ -9,7 +9,7 @@ SWEP.Base					= "weapon_cs_base"
 SWEP.WeaponType				= "Primary"
 
 SWEP.Cost					= 1337
-SWEP.CSSMoveSpeed			= 250 - 10
+SWEP.CSSMoveSpeed			= 230
 
 SWEP.Spawnable				= true
 SWEP.AdminOnly				= false
@@ -29,7 +29,7 @@ SWEP.Primary.Cone			= 0
 SWEP.Primary.ClipSize		= 18
 SWEP.Primary.SpareClip		= 18*5
 SWEP.Primary.Delay			= 1/(250/60)
-SWEP.Primary.Ammo			= "css_762mm"
+SWEP.Primary.Ammo			= "css_357sig"
 SWEP.Primary.Automatic 		= false
 
 SWEP.RecoilMul				= 1
@@ -75,6 +75,8 @@ SWEP.MagAngMod				= Angle(0,90,0)
 
 SWEP.ZoomInSound			= Sound("halo2/covenant carbine/carbine_zoom_in.wav")
 SWEP.ZoomOutSound			= Sound("halo2/covenant carbine/carbine_zoom_out.wav")
+
+SWEP.ReloadTimeAdd			= -0.3
 
 SWEP.ShowWorldModel         = false
 SWEP.ViewModelBoneMods = {

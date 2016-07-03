@@ -9,7 +9,7 @@ SWEP.Base					= "weapon_cs_base"
 SWEP.WeaponType				= "Primary"
 
 SWEP.Cost					= 1337
-SWEP.CSSMoveSpeed			= 250 - 10
+SWEP.CSSMoveSpeed			= 220
 
 SWEP.Spawnable				= true
 SWEP.AdminOnly				= false
@@ -29,7 +29,7 @@ SWEP.Primary.Cone			= 0
 SWEP.Primary.ClipSize		= 4
 SWEP.Primary.SpareClip		= 4*5
 SWEP.Primary.Delay			= 1/(60/60)
-SWEP.Primary.Ammo			= "css_762mm"
+SWEP.Primary.Ammo			= "css_338"
 SWEP.Primary.Automatic 		= false
 
 SWEP.RecoilMul				= 0.25
@@ -59,21 +59,24 @@ SWEP.IronSightTime			= 0.125
 SWEP.IronSightsPos 			= Vector(-3.75 - 0.075, 0, 1.5 - 0.15)
 SWEP.IronSightsAng 			= Vector(0, 0, 0)
 
+SWEP.ZoomInSound			= Sound("halo2/sniper/zoom_in.wav")
+SWEP.ZoomOutSound			= Sound("halo2/sniper/zoom_out.wav")
+
+SWEP.ReloadTimeAdd			= -0.3
+
 SWEP.ColorOverlay			= Color(0,255,0,20)
 
 SWEP.FatalHeadshot			= true
 
-SWEP.DamageFalloff			= 2000
+SWEP.DamageFalloff			= 8000
 
 SWEP.TracerNames 			= {"h2_sniper_muzzle_effect"}
 
 SWEP.CustomScope			= Material("scopeutra/halo2_sniper")
 SWEP.CustomScopeCOverride	= Color(0,255,255,100)
 
-SWEP.GetMagModel 			= Model("models/carbine_ammo.mdl")
+SWEP.GetMagModel 			= Model("models/weapons/unloaded/snip_awp_mag.mdl")
 SWEP.MagDelayMod			= 0.25
-SWEP.MagMoveMod 			= Vector(0,-100,100)
-SWEP.MagAngMod				= Angle(0,90,0)
 
 
 SWEP.ShowWorldModel         = false
@@ -130,11 +133,15 @@ function SWEP:DrawSpecial(ConeToSend)
 end
 
 function SWEP:SpecialFire()
-
-	if self.ZoomAmount == 8 then
-		self.ZoomAmount = 16
-	else
-		self.ZoomAmount = 8
+	if CLIENT then
+		if IsFirstTimePredicted() then
+			if self.ZoomAmount == 8 then
+				self.ZoomAmount = 24
+				self:EmitSound(self.ZoomInSound)
+			else
+				self.ZoomAmount = 8
+				self:EmitSound(self.ZoomOutSound)
+			end
+		end
 	end
-
 end

@@ -9,7 +9,7 @@ SWEP.Base					= "weapon_cs_base"
 SWEP.WeaponType				= "Primary"
 
 SWEP.Cost					= 1337
-SWEP.CSSMoveSpeed			= 250 - 10
+SWEP.CSSMoveSpeed			= 245
 
 SWEP.Spawnable				= true
 SWEP.AdminOnly				= false
@@ -18,25 +18,25 @@ SWEP.Slot					= 3 - 1
 SWEP.SlotPos				= 1
 
 SWEP.ViewModel 				= "models/weapons/v_halo_2_smg.mdl"
-SWEP.WorldModel				= "models/weapons/w_pistol.mdl"
+SWEP.WorldModel				= "models/weapons/w_smg1.mdl"
 SWEP.VModelFlip 			= false
 SWEP.HoldType				= "smg"
 
-SWEP.Primary.Damage			= 15
+SWEP.Primary.Damage			= 20
 SWEP.Primary.NumShots		= 1
 SWEP.Primary.Sound			= Sound("halo2/smg/smg_h2_1.wav")
 SWEP.Primary.Cone			= 0.01
 SWEP.Primary.ClipSize		= 60
 SWEP.Primary.SpareClip		= 60*3
 SWEP.Primary.Delay			= 1/(900/60)
-SWEP.Primary.Ammo			= "css_762mm"
+SWEP.Primary.Ammo			= "css_57mm"
 SWEP.Primary.Automatic 		= true
 
 SWEP.RecoilMul				= 1
 SWEP.SideRecoilMul			= 0.1
 SWEP.VelConeMul				= 0
 SWEP.HeatMul				= 3
-SWEP.CoolMul				= 0.28
+SWEP.CoolMul				= 0.26
 
 SWEP.HasScope 				= false
 SWEP.ZoomAmount 			= 0.5
@@ -59,6 +59,8 @@ SWEP.IronSightsPos 			= Vector(-3.3, 0, 1.5)
 SWEP.IronSightsAng 			= Vector(0, -1, 0)
 
 SWEP.DamageFalloff			= 300
+
+SWEP.ReloadTimeAdd			= -0.3
 
 SWEP.GetMagModel 			= Model("models/smgh2_ammo.mdl")
 SWEP.MagDelayMod			= 0.25

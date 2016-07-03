@@ -9,7 +9,7 @@ SWEP.Base					= "weapon_cs_base"
 SWEP.WeaponType				= "Secondary"
 
 SWEP.Cost					= 1337
-SWEP.CSSMoveSpeed			= 250 - 10
+SWEP.CSSMoveSpeed			= 250
 
 SWEP.Spawnable				= true
 SWEP.AdminOnly				= false
@@ -29,7 +29,7 @@ SWEP.Primary.Cone			= 0.005
 SWEP.Primary.ClipSize		= 12
 SWEP.Primary.SpareClip		= 12*3
 SWEP.Primary.Delay			= 1/(360/60)
-SWEP.Primary.Ammo			= "css_762mm"
+SWEP.Primary.Ammo			= "css_50ae"
 SWEP.Primary.Automatic 		= false
 
 SWEP.FatalHeadshot			= true
