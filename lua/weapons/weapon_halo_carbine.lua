@@ -63,6 +63,9 @@ SWEP.FatalHeadshot			= true
 
 SWEP.DamageFalloff			= 2000
 
+SWEP.HasIdle				= true
+SWEP.IdleOffset				= 0
+
 SWEP.TracerNames 			= {"h2_aniversary_carbine_beam","h2_aniversary_carbine_muzzle","h2_aniversary_carbine_muzzle_2","carbine_beam_effect"}
 
 SWEP.CustomScope			= Material("scopeutra/halo2_cov_carbine")
@@ -77,6 +80,8 @@ SWEP.ZoomInSound			= Sound("halo2/covenant carbine/carbine_zoom_in.wav")
 SWEP.ZoomOutSound			= Sound("halo2/covenant carbine/carbine_zoom_out.wav")
 
 SWEP.ReloadTimeAdd			= -0.3
+
+SWEP.UseThisWorldModel		= Model("models/carbine_h2.mdl")
 
 SWEP.ShowWorldModel         = false
 SWEP.ViewModelBoneMods = {

@@ -1,10 +1,10 @@
 if CLIENT then
-	killicon.Add( "weapon_halo_sniper", "VGUI/hud/halo2_swep_sniperifle", Color( 255, 255, 255, 255 ) )
-	SWEP.WepSelectIcon 		= surface.GetTextureID("VGUI/hud/halo2_swep_sniperifle")
+	killicon.Add( "weapon_halo_beamrifle", "vgui/hud/halo2_swep_beamrifle", Color( 255, 255, 255, 255 ) )
+	SWEP.WepSelectIcon 		= surface.GetTextureID("vgui/hud/halo2_swep_beamrifle")
 end
 
 SWEP.Category				= "Halo 2 Weapons"
-SWEP.PrintName				= "Sniper"
+SWEP.PrintName				= "Beam Rifle"
 SWEP.Base					= "weapon_cs_base"
 SWEP.WeaponType				= "Primary"
 
@@ -17,19 +17,19 @@ SWEP.AdminOnly				= false
 SWEP.Slot					= 4 - 1
 SWEP.SlotPos				= 1
 
-SWEP.ViewModel				= Model("models/weapons/v_halo_2_sniper_rifle.mdl")
+SWEP.ViewModel				= Model("models/weapons/v_halo_2_beamrifle.mdl")
 SWEP.WorldModel				= Model("models/weapons/w_irifle.mdl")
 SWEP.VModelFlip 			= false
 SWEP.HoldType				= "ar2"
 
 SWEP.Primary.Damage			= 75
 SWEP.Primary.NumShots		= 1
-SWEP.Primary.Sound			= Sound("halo2/sniper/sniper_fire_h3_1.wav")
+SWEP.Primary.Sound			= Sound("halo2/beam_rifle/beam_rifle_fire_1.wav")
 SWEP.Primary.Cone			= 0
-SWEP.Primary.ClipSize		= 4
-SWEP.Primary.SpareClip		= 4*5
+SWEP.Primary.ClipSize		= 25
+SWEP.Primary.SpareClip		= 0
 SWEP.Primary.Delay			= 1/(60/60)
-SWEP.Primary.Ammo			= "css_338"
+SWEP.Primary.Ammo			= "smod_weeb"
 SWEP.Primary.Automatic 		= false
 
 SWEP.RecoilMul				= 0.25
@@ -59,8 +59,8 @@ SWEP.IronSightTime			= 0.125
 SWEP.IronSightsPos 			= Vector(-3.75 - 0.075, 0, 1.5 - 0.15)
 SWEP.IronSightsAng 			= Vector(0, 0, 0)
 
-SWEP.ZoomInSound			= Sound("halo2/sniper/zoom_in.wav")
-SWEP.ZoomOutSound			= Sound("halo2/sniper/zoom_out.wav")
+SWEP.ZoomInSound			= Sound("halo2/beam_rifle/beam rifle scope in x1.mp3")
+SWEP.ZoomOutSound			= Sound("halo2/beam_rifle/beam rifle scope out.mp3")
 
 SWEP.ReloadTimeAdd			= -0.3
 
@@ -70,31 +70,25 @@ SWEP.FatalHeadshot			= true
 
 SWEP.DamageFalloff			= 8000
 
-SWEP.TracerNames 			= {"h2_sniper_muzzle_effect"}
+SWEP.TracerNames 			= {"beam_rifle_effect","h2_beam_rifle_muzzle","h2_beam_rifle_beam"}
 
-SWEP.CustomScope			= Material("scopeutra/halo2_sniper")
+SWEP.CustomScope			= Material("scopeutra/beam_rifle")
 SWEP.CustomScopeCOverride	= Color(0,255,255,100)
-
-SWEP.GetMagModel 			= Model("models/weapons/unloaded/snip_awp_mag.mdl")
-SWEP.MagDelayMod			= 0.25
 
 SWEP.ShowWorldModel         = false
 
-SWEP.UseThisWorldModel		= Model("models/sniper_rifle_h2.mdl")
+SWEP.UseThisWorldModel		= Model("models/beamrifle_h2.mdl")
 
-SWEP.ViewModelBoneMods = {
-	["body"] = { scale = Vector(1, 1, 1), pos = Vector(-7.112, -0.179, -0.271), angle = Angle(0, 0, 0) }
-}
+SWEP.UsesBuildUp			= true
+SWEP.BuildUpAmount 			= 33
+SWEP.BuildUpCoolAmount 		= 20
 
-SWEP.VElements = {
-	["screen"] = { type = "Model", model = "models/hunter/plates/plate1x1.mdl", bone = "body", rel = "", pos = Vector(-1.264, 0.363, 4.833), angle = Angle(-37.394, -1.374, 0), size = Vector(0.016, 0.028, 0.016), color = Color(255, 255, 255, 243), surpresslightning = true, material = "models/screenspace", skin = 0, bodygroup = {} }
-}
 
 SWEP.WElements = {
-	["sniper rifle"] = { type = "Model", model = "models/sniper_rifle_h2.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(4.518, 1.044, -0.231), angle = Angle(-13.443, 1.138, 92.703), size = Vector(0.745, 0.745, 0.745), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
+	["beam rifle"] = { type = "Model", model = "models/beamrifle_h2.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(2.703, 0.87, -3.257), angle = Angle(-73.243, -178.732, -86.88), size = Vector(0.992, 0.992, 0.992), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
 }
 
-SWEP.Variable01 = Material("crosshair/sniper_h2")
+SWEP.Variable01 = Material("crosshair/beam_rifle")
 
 function SWEP:DrawSpecial(ConeToSend)
 
@@ -134,15 +128,35 @@ function SWEP:DrawSpecial(ConeToSend)
 end
 
 function SWEP:SpecialFire()
-	if CLIENT then
-		if IsFirstTimePredicted() then
-			if self.ZoomAmount == 8 then
-				self.ZoomAmount = 24
-				self:EmitSound(self.ZoomInSound)
-			else
-				self.ZoomAmount = 8
-				self:EmitSound(self.ZoomOutSound)
-			end
-		end
+	if self:IsBusy() then return end
+	if self:GetNextPrimaryFire() > CurTime() then return end
+	self:SetNextPrimaryFire(CurTime() + 1.3)
+	self:WeaponAnimation(self:Clip1(),ACT_VM_HITCENTER)
+	self:NewSwing(90)
+end
+
+function SWEP:CustomAmmoDisplay()
+	self.AmmoDisplay = self.AmmoDisplay or {}
+	self.AmmoDisplay.Draw = true //draw the display?
+	self.AmmoDisplay.PrimaryClip = math.ceil(self:Clip1()) * 4
+	self.AmmoDisplay.PrimaryAmmo = math.Clamp(self:GetBuildUp() * 2 * (1/0.75),0,100)
+	return self.AmmoDisplay
+end
+
+
+function SWEP:PostPrimaryFire()
+	if self:GetBuildUp() >= 50 * 0.75 then
+		self:WeaponAnimation(self:Clip1(),ACT_VM_RELOAD)
+		self.Owner:EmitSound(Sound("halo2/plasmarifle/overheat.wav"))
+		local ViewModel = self.Owner:GetViewModel()
+		self:SetNextPrimaryFire(CurTime() + ViewModel:SequenceDuration())
+		self:SetSpecialFloat(1)
+	end
+end
+
+function SWEP:SpareThink()
+	local BuildUp = self:GetBuildUp()
+	if self:GetSpecialFloat() == 1 and BuildUp == 0 then
+		self:SetSpecialFloat(0)
 	end
 end

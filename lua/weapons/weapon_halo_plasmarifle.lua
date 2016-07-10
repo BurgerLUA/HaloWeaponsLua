@@ -80,6 +80,8 @@ SWEP.UsesBuildUp			= true
 SWEP.BuildUpAmount 			= 5.5
 SWEP.BuildUpCoolAmount 		= 20
 
+SWEP.UseThisWorldModel		= Model("models/prifle2.mdl")
+
 SWEP.ShowWorldModel			= false
 SWEP.ViewModelBoneMods = {
 	["ValveBiped.Bip01_L_Finger1"] = { scale = Vector(1, 1, 1), pos = Vector(0.238, 0, 0), angle = Angle(0, 0, 0) },

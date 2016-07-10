@@ -64,6 +64,8 @@ SWEP.DamageFalloff			= 2000
 
 SWEP.ReloadSound			= Sound("halo2/magnum/magnum_reload_1.wav")
 
+SWEP.UseThisWorldModel		= Model("models/magnum_h2.mdl")
+
 SWEP.ShowWorldModel         = false
 SWEP.WElements = {
 	["magnum"] = { 

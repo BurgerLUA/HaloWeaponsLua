@@ -67,6 +67,8 @@ SWEP.MagDelayMod			= 0.25
 SWEP.MagMoveMod 			= Vector(-200,0,0)
 SWEP.MagAngMod				= Angle(0,90,0)
 
+SWEP.UseThisWorldModel		= Model("models/smgh2.mdl")
+
 SWEP.ShowWorldModel         = false
 SWEP.WElements = {
 	["smg"] = { type = "Model", model = "models/smgh2.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(4.849, 1.503, 1.759), angle = Angle(-102.627, 6.722, 96.369), size = Vector(1.542, 1.542, 1.542), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }

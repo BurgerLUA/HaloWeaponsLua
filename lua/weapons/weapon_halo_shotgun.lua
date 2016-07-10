@@ -67,6 +67,8 @@ SWEP.TracerNames 			= {"h2_shotty_muzzle"}
 
 SWEP.ShowWorldModel         = false
 
+SWEP.UseThisWorldModel		= Model("models/hshotgun.mdl")
+
 SWEP.WElements = {
 	["shotgun"] = { type = "Model", model = "models/hshotgun.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(4.218, 0.853, 0), angle = Angle(-83.193, -148.736, -59.64), size = Vector(1.041, 1.041, 1.041), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
 }
@@ -98,20 +100,13 @@ function SWEP:DrawSpecial(ConeToSend)
 	local HitPos = EyeTrace.HitPos
 	
 	if Target and Target ~= NULL and (Target:IsPlayer() or Target:IsNPC()) then
-	
 		surface.SetDrawColor(Color(255,0,0,150))
 		surface.SetMaterial(self.Variable01)
 		surface.DrawTexturedRectRotated(XRound,YRound,64,64,0)
-		
-		
 	else
-	
 		surface.SetDrawColor(Color(0,255,255,150))
 		surface.SetMaterial(self.Variable01)
 		surface.DrawTexturedRectRotated(XRound,YRound,64,64,0)
-		
 	end
-	
-	
 
 end
