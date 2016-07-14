@@ -31,7 +31,7 @@ end
 SWEP.Primary.Damage			= 200
 SWEP.Primary.NumShots		= 1
 SWEP.Primary.Sound			= Sound("halo2/fuelrod/flak_fire_h2_1.wav")
-SWEP.Primary.Cone			= .00125
+SWEP.Primary.Cone			= 0
 SWEP.Primary.ClipSize		= 5
 SWEP.Primary.SpareClip		= 5
 SWEP.Primary.Delay			= 1/(120/60)
@@ -63,8 +63,8 @@ SWEP.IronSightTime			= 0.5
 SWEP.IronSightsPos 			= Vector(0, 0, 0)
 SWEP.IronSightsAng 			= Vector(0, 0, 0)
 
-SWEP.BulletEnt				= "fuelrod_projectile"
-SWEP.SourceOverride			= Vector(2,0,-6)
+SWEP.BulletEnt				= "ent_halo_fuelrod"
+SWEP.SourceOverride			= Vector(7,4,-3)
 SWEP.BulletAngOffset		= Angle(0,0,0)
 
 SWEP.ZoomInSound			= Sound("halo2/fuelrod/flak_cannon_zoom_in.wav")
