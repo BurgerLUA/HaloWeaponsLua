@@ -22,6 +22,8 @@ SWEP.WorldModel				= "models/weapons/w_rocket_launcher.mdl"
 SWEP.VModelFlip 			= false
 SWEP.HoldType				= "rpg"
 
+SWEP.EnabledDropping		= false
+
 game.AddAmmoType({name = "halo_fuelrod"})
 
 if CLIENT then 
