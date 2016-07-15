@@ -50,6 +50,9 @@ SWEP.HasSilencer 			= false
 SWEP.HasDoubleZoom			= false
 SWEP.HasSideRecoil			= true
 SWEP.HasDownRecoil			= false
+SWEP.HasSpecialFire			= true
+
+SWEP.AddFOV					= -10
 
 SWEP.HasIronSights 			= true
 SWEP.EnableIronCross		= true
@@ -100,6 +103,24 @@ function SWEP:DrawSpecial(ConeToSend)
 	end
 	
 	
+
+end
+
+SWEP.MeleeSoundMiss			= Sound("halo2/smg/smg_melee.wav")
+SWEP.MeleeSoundWallHit		= Sound("weapons/foot/foot_kickwall.wav")
+SWEP.MeleeSoundFleshSmall	= Sound("weapons/foot/foot_kickbody.wav")
+SWEP.MeleeSoundFleshLarge	= Sound("weapons/foot/foot_kickbody.wav")
+
+function SWEP:SpecialFire()
+
+	if self:IsBusy() then return end
+	if self:GetNextPrimaryFire() > CurTime() then return end
+	
+	self:SetNextPrimaryFire(CurTime() + 1)
+	
+	self.Owner:DoAnimationEvent( ACT_GMOD_GESTURE_MELEE_SHOVE_2HAND )
+	self:WeaponAnimation(self:Clip1(),ACT_VM_HITCENTER)
+	self:NewSwing(90)
 
 end
 

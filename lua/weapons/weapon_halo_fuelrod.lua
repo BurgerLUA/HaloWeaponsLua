@@ -57,6 +57,7 @@ SWEP.HasSilencer 			= false
 SWEP.HasDoubleZoom			= false
 SWEP.HasSideRecoil			= false
 SWEP.HasDryFire				= false
+SWEP.HasSpecialFire			= false
 
 SWEP.HasIronSights 			= false
 SWEP.EnableIronCross		= false
@@ -122,4 +123,7 @@ function SWEP:DrawSpecial(ConeToSend)
 
 end
 
-
+SWEP.MeleeSoundMiss			= Sound("halo2/battle/br_melee1.wav")
+SWEP.MeleeSoundWallHit		= Sound("weapons/foot/foot_kickwall.wav")
+SWEP.MeleeSoundFleshSmall	= Sound("weapons/foot/foot_kickbody.wav")
+SWEP.MeleeSoundFleshLarge	= Sound("weapons/foot/foot_kickbody.wav")

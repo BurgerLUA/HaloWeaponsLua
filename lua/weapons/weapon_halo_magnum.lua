@@ -52,6 +52,7 @@ SWEP.HasSilencer 			= false
 SWEP.HasDoubleZoom			= false
 SWEP.HasSideRecoil			= false
 SWEP.HasDownRecoil			= false
+SWEP.HasSpecialFire			= true
 
 SWEP.HasIronSights 			= true
 SWEP.EnableIronCross		= true
@@ -65,6 +66,8 @@ SWEP.DamageFalloff			= 2000
 SWEP.ReloadSound			= Sound("halo2/magnum/magnum_reload_1.wav")
 
 SWEP.UseThisWorldModel		= Model("models/magnum_h2.mdl")
+
+SWEP.AddFOV					= -10
 
 SWEP.ShowWorldModel         = false
 SWEP.WElements = {
@@ -119,3 +122,26 @@ function SWEP:DrawSpecial(ConeToSend)
 	end
 
 end
+
+SWEP.MeleeSoundMiss			= Sound("halo2/magnum/magnum_melee_1.wav")
+SWEP.MeleeSoundWallHit		= Sound("weapons/foot/foot_kickwall.wav")
+SWEP.MeleeSoundFleshSmall	= Sound("weapons/foot/foot_kickbody.wav")
+SWEP.MeleeSoundFleshLarge	= Sound("weapons/foot/foot_kickbody.wav")
+
+function SWEP:SpecialFire()
+
+	if self:IsBusy() then return end
+	if self:GetNextPrimaryFire() > CurTime() then return end
+	
+	--self:GetActivities()
+	
+	self:SetNextPrimaryFire(CurTime() + 1)
+	
+	self.Owner:DoAnimationEvent( ACT_GMOD_GESTURE_MELEE_SHOVE_2HAND )
+	self:WeaponAnimation(self:Clip1(),ACT_VM_HITCENTER)
+	self:NewSwing(90)
+
+end
+
+
+

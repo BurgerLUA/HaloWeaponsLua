@@ -141,3 +141,8 @@ function SWEP:DrawSpecial(ConeToSend)
 	
 
 end
+
+SWEP.MeleeSoundMiss			= Sound("halo2/battle/br_melee1.wav")
+SWEP.MeleeSoundWallHit		= Sound("weapons/foot/foot_kickwall.wav")
+SWEP.MeleeSoundFleshSmall	= Sound("weapons/foot/foot_kickbody.wav")
+SWEP.MeleeSoundFleshLarge	= Sound("weapons/foot/foot_kickbody.wav")

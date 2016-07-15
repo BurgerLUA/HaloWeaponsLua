@@ -52,6 +52,7 @@ SWEP.HasDoubleZoom			= false
 SWEP.HasSideRecoil			= true
 SWEP.HasDownRecoil			= true
 SWEP.HasDryFire				= false
+SWEP.HasSpecialFire			= true
 
 SWEP.HasIronSights 			= true
 SWEP.EnableIronCross		= true
@@ -74,8 +75,6 @@ SWEP.MeleeSoundMiss			= Sound("halo2/plasmarifle/melee.wav")
 SWEP.MeleeSoundWallHit		= Sound("halo2/plasmarifle/melee.wav")
 SWEP.MeleeSoundFleshSmall	= Sound("halo2/plasmarifle/melee.wav")
 SWEP.MeleeSoundFleshLarge	= Sound("halo2/plasmarifle/melee.wav")
-
-SWEP.HasSpecialFire			= true
 
 SWEP.UsesBuildUp			= true
 SWEP.BuildUpAmount 			= 5.5
@@ -106,6 +105,7 @@ function SWEP:SpecialFire()
 	if self:GetNextPrimaryFire() > CurTime() then return end
 	self:SetNextPrimaryFire(CurTime() + 1.3)
 	self:WeaponAnimation(self:Clip1(),ACT_VM_HITCENTER)
+	self.Owner:DoAnimationEvent( ACT_GMOD_GESTURE_MELEE_SHOVE_2HAND )
 	self:NewSwing(90)
 end
 
@@ -155,6 +155,24 @@ function SWEP:DrawSpecial(ConeToSend)
 		surface.SetMaterial(self.Variable01)
 		surface.DrawTexturedRectRotated(XRound,YRound,32 + ConeToSend,32 + ConeToSend,0)
 	end
+
+end
+
+SWEP.MeleeSoundMiss			= Sound("halo2/plasmarifle/melee.wav")
+SWEP.MeleeSoundWallHit		= Sound("weapons/foot/foot_kickwall.wav")
+SWEP.MeleeSoundFleshSmall	= Sound("weapons/foot/foot_kickbody.wav")
+SWEP.MeleeSoundFleshLarge	= Sound("weapons/foot/foot_kickbody.wav")
+
+function SWEP:SpecialFire()
+
+	if self:IsBusy() then return end
+	if self:GetNextPrimaryFire() > CurTime() then return end
+	
+	self:SetNextPrimaryFire(CurTime() + 1)
+	
+	self.Owner:DoAnimationEvent( ACT_GMOD_GESTURE_MELEE_SHOVE_2HAND )
+	self:WeaponAnimation(self:Clip1(),ACT_VM_HITCENTER)
+	self:NewSwing(90)
 
 end
 

@@ -39,7 +39,7 @@ SWEP.HeatMul				= 0
 SWEP.CoolMul				= 0
 
 SWEP.HasScope 				= true
-SWEP.ZoomAmount 			= 8
+SWEP.ZoomAmount 			= 4
 SWEP.HasCrosshair 			= false
 SWEP.HasCSSZoom 			= false
 
@@ -128,12 +128,22 @@ function SWEP:DrawSpecial(ConeToSend)
 
 end
 
+SWEP.MeleeSoundMiss			= Sound("halo2/battle/br_melee1.wav")
+SWEP.MeleeSoundWallHit		= Sound("weapons/foot/foot_kickwall.wav")
+SWEP.MeleeSoundFleshSmall	= Sound("weapons/foot/foot_kickbody.wav")
+SWEP.MeleeSoundFleshLarge	= Sound("weapons/foot/foot_kickbody.wav")
+
 function SWEP:SpecialFire()
+
 	if self:IsBusy() then return end
 	if self:GetNextPrimaryFire() > CurTime() then return end
-	self:SetNextPrimaryFire(CurTime() + 1.3)
+	
+	self:SetNextPrimaryFire(CurTime() + 1)
+	
+	self.Owner:DoAnimationEvent( ACT_GMOD_GESTURE_MELEE_SHOVE_2HAND )
 	self:WeaponAnimation(self:Clip1(),ACT_VM_HITCENTER)
 	self:NewSwing(90)
+
 end
 
 function SWEP:CustomAmmoDisplay()
@@ -159,5 +169,21 @@ function SWEP:SpareThink()
 	local BuildUp = self:GetBuildUp()
 	if self:GetSpecialFloat() == 1 and BuildUp == 0 then
 		self:SetSpecialFloat(0)
+	end
+end
+
+function SWEP:SpecialFire()
+	if CLIENT then
+		if IsFirstTimePredicted() then
+			if self.IsZoomed then
+				if self.ZoomAmount == 4 then
+					self.ZoomAmount = 24
+					self:EmitSound(self.ZoomInSound)
+				else
+					self.ZoomAmount = 4
+					self:EmitSound(self.ZoomOutSound)
+				end
+			end
+		end
 	end
 end
