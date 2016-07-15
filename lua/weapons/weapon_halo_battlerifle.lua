@@ -65,7 +65,7 @@ SWEP.FatalHeadshot			= true
 
 SWEP.DamageFalloff			= 2000
 
-SWEP.TracerNames 			= {"h2_battle_muzz","AR2Tracer"}
+SWEP.TracerNames 			= {"h2_battle_muzz"}
 
 SWEP.CustomScope			= Material("scopeutra/battle_rifle_1h2")
 SWEP.CustomScopeCOverride	= Color(0,255,255,100)
