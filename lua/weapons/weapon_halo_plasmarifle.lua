@@ -64,6 +64,7 @@ SWEP.DamageFalloff			= 3000
 
 SWEP.AddFOV					= 10
 
+SWEP.TracerName				= nil
 SWEP.TracerNames 			= {"h2_prifle_muzzle","plasma_rifle_effect"}
 
 SWEP.BulletEnt				= "ent_halo_blueplasma"

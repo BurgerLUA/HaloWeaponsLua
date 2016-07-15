@@ -70,6 +70,7 @@ SWEP.FatalHeadshot			= true
 
 SWEP.DamageFalloff			= 8000
 
+SWEP.TracerName				= nil
 SWEP.TracerNames 			= {"beam_rifle_effect","h2_beam_rifle_muzzle","h2_beam_rifle_beam"}
 
 SWEP.CustomScope			= Material("scopeutra/beam_rifle")

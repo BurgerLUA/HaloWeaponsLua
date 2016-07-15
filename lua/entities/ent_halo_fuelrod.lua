@@ -61,6 +61,8 @@ function ENT:PhysicsCollide( data, collider )
 	
 	SafeRemoveEntityDelayed(self,1)
 	
+	self:EmitSound("halo2/fuelrod/flak_expl1.wav",SNDLVL_180dB)
+	
 	net.Start("FR_Detonate")
 		net.WriteEntity(self)
 	net.Broadcast()
@@ -114,7 +116,7 @@ if CLIENT then
 	
 		local pos = self:GetPos()
 		
-		print("BOOM")
+		--print("BOOM")
 	
 		for i=1, 30 do
 			local Particle = self.Emitter:Add("particle/smokesprites_000"..math.random(1,9),pos)

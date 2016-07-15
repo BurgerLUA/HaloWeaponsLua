@@ -28,7 +28,7 @@ SWEP.Primary.Sound			= Sound("halo2/covenant carbine/fire1.wav")
 SWEP.Primary.Cone			= 0
 SWEP.Primary.ClipSize		= 18
 SWEP.Primary.SpareClip		= 18*5
-SWEP.Primary.Delay			= 1/(250/60)
+SWEP.Primary.Delay			= 1/(350/60)
 SWEP.Primary.Ammo			= "css_357sig"
 SWEP.Primary.Automatic 		= false
 
@@ -56,7 +56,7 @@ SWEP.HasIronSights 			= true
 SWEP.EnableIronCross		= true
 SWEP.HasGoodSights			= false
 SWEP.IronSightTime			= 0.125
-SWEP.IronSightsPos 			= Vector(-4, 0, -1.5)
+SWEP.IronSightsPos 			= Vector(-4, -100, -3)
 SWEP.IronSightsAng 			= Vector(0, 0, 0)
 
 SWEP.FatalHeadshot			= true
@@ -64,9 +64,9 @@ SWEP.FatalHeadshot			= true
 SWEP.DamageFalloff			= 2000
 
 SWEP.HasIdle				= true
-SWEP.IdleOffset				= 0
 
-SWEP.TracerNames 			= {"h2_aniversary_carbine_beam","h2_aniversary_carbine_muzzle","h2_aniversary_carbine_muzzle_2","carbine_beam_effect"}
+SWEP.TracerName				= nil
+SWEP.TracerNames 			= {"h2_aniversary_carbine_beam","h2_aniversary_carbine_muzzle"}
 
 SWEP.CustomScope			= Material("scopeutra/halo2_cov_carbine")
 SWEP.CustomScopeCOverride	= Color(0,255,255,100)

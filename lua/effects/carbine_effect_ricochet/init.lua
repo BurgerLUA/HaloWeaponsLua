@@ -1,78 +1,84 @@
-EFFECT.Mat = Material( "effects/h2_carbine_beam" ) 
+EFFECT.Mat = Material( "trails/smoke" ) 
+
+function EFFECT:GetTracerOrigin( data )
+
+	-- this is almost a direct port of GetTracerOrigin in fx_tracer.cpp
+	local start = data:GetStart();
+	
+	-- use attachment?
+	if( bit.band( data:GetFlags(), TRACER_FLAG_USEATTACHMENT ) == TRACER_FLAG_USEATTACHMENT ) then
+
+		local entity = data:GetEntity();
+		
+		if( not IsValid( entity ) ) then return start; end
+		if( not game.SinglePlayer() and entity:IsEFlagSet( EFL_DORMANT ) ) then return start; end
+		
+		if( entity:IsWeapon() and entity:IsCarriedByLocalPlayer() ) then
+			local pl = entity:GetOwner();
+			if( IsValid( pl ) ) then
+				local vm = pl:GetViewModel();
+				if( IsValid( vm ) and not LocalPlayer():ShouldDrawLocalPlayer() ) then
+					entity = vm;
+				else
+					-- HACK: fix the model in multiplayer
+					if( entity.WorldModel ) then
+						entity:SetModel( entity.WorldModel );
+					end
+				end
+			end
+		end
+
+		local attachment = entity:GetAttachment( data:GetAttachment() );
+		if( attachment ) then
+			start = attachment.Pos;
+		end
+
+	end
+	
+	return start;
+
+end
 
 /*---------------------------------------------------------
    EFFECT:Init(data)
 ---------------------------------------------------------*/
 function EFFECT:Init(data)
 
-	self.StartPos 	= data:GetStart()	
+	self.WeaponEnt = data:GetEntity()
+	self.Attachment = data:GetAttachment()
+	
+	self.StartPos 	= self:GetTracerShootPos(data:GetOrigin(), self.WeaponEnt, self.Attachment)
 	self.EndPos 	= data:GetOrigin()
 	self.Dir 		= self.EndPos - self.StartPos
 	self.Entity:SetRenderBoundsWS(self.StartPos, self.EndPos)
 	
-	self.TracerTime 	= 0.4
+	self.TracerTime 	= 2
 	
 	// Die when it reaches its target
 	self.DieTime 	= CurTime() + self.TracerTime
 	
 	// Play ricochet sound with random pitch
-	
 	local vGrav 	= Vector(0, 0, -450)
-	local Dir 		= self.Dir:GetNormalized()
+	local Dir	= self.Dir:GetNormalized()
 	
-	local emitter = ParticleEmitter(self.StartPos)
 	
-	for i = 1, 10 do
-	
-		local particle = emitter:Add("effects/h2_carbine_muzzle", self.StartPos)
+
+	local weapon = data:GetEntity();
+	if( IsValid( weapon ) and ( not weapon:IsWeapon() or not weapon:IsCarriedByLocalPlayer() ) ) then
+		local dist, pos, time = util.DistanceToLine( self.StartPos, self.EndPos, EyePos() );
 		
-			particle:SetVelocity((Dir + VectorRand() * 0.5) * math.Rand(50, 150))
-			particle:SetDieTime(math.Rand(0.5, 2))
-			particle:SetStartAlpha(255)
-			particle:SetStartSize(math.Rand(2, 4))
-			particle:SetEndSize(0)
-			particle:SetRoll(0)
-			particle:SetGravity(vGrav * 0.4)
-			particle:SetCollide(true)
-			particle:SetBounce(0.8)
-			particle:SetAirResistance(50)
-			particle:SetStartLength(0.2)
-			particle:SetColor( 127, 255, 0 )
-			particle:SetEndLength(0)
-			particle:SetVelocityScale(true)
-			particle:SetCollide(true)
-	end
-	
-		local particle = emitter:Add("effects/h2_carbine_muzzle", self.StartPos)
-
-			particle:SetDieTime(0.1)
-			particle:SetStartAlpha(255)
-			particle:SetStartSize(128)
-			particle:SetEndSize(0)
-			particle:SetColor( 127, 255, 0 )
-			particle:SetRoll(math.Rand(0, 360))
-			
-		local particle = emitter:Add("effects/h2_carbine_muzzle", self.StartPos)
-
-			particle:SetDieTime(0.4)
-			particle:SetStartAlpha(255)
-			particle:SetStartSize(32)
-			particle:SetEndSize(0)
-			particle:SetColor( 127, 255, 0 )
-			particle:SetRoll(math.Rand(0, 360))
-				
-	emitter:Finish()
-	
-	local dlight = DynamicLight(0)
-		if (dlight) then
-			dlight.Pos 		= self.StartPos
-			dlight.r 		= 127
-			dlight.g 		= 255
-			dlight.b 		= 0
-			dlight.Brightness = 4
-			dlight.size 	= 100
-			dlight.DieTime 	= CurTime() + 0.1
+		local MaxDist = 64
+		
+		local VolumeMod = (1 - dist/MaxDist)*0.5
+		
+		if dist < MaxDist then
+			EmitSound("halo2/covenant carbine/beam_flyby1.wav",pos,LocalPlayer():EntIndex(),CHAN_WEAPON,VolumeMod,SNDLVL_GUNFIRE,0,100)
 		end
+		
+	end
+
+	
+	
 end
 
 /*---------------------------------------------------------
@@ -97,7 +103,9 @@ function EFFECT:Render()
 	
 	local sinWave = math.sin(fDelta * math.pi)
 	
-	local color = Color(127, 255, 0, 255 * fDelta)
+	local color = Color(255, 255, 255, 255 * fDelta)
 	
-	render.DrawBeam(self.StartPos, self.EndPos, 8 * fDelta, 0.5, 0.5, color)
+	local Add = Vector(0,0,1 - fDelta)*10
+	
+	render.DrawBeam(self.StartPos + Add, self.EndPos + Add, 4 * fDelta, 0.5, 0.5, color)
 end

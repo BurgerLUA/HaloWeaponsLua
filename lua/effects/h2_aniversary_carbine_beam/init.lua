@@ -1,15 +1,4 @@
-
-TRACER_FLAG_USEATTACHMENT	= 0x0002;
-SOUND_FROM_WORLD			= 0;
-CHAN_STATIC					= 6;
-
-EFFECT.Speed				= 8900;
-EFFECT.Length				= 1100;
-//EFFECT.WhizSound			= Sound( "nomad/whiz.wav" );		-- by Robinhood76 (http:--www.freesound.org/people/Robinhood76/sounds/96556/)
-EFFECT.WhizDistance			= 72;
-
-local MaterialMain			= Material( "effects/carbine_contrail" );
-local MaterialFront			= Material( "effects/sw_laser_purple_front" );
+EFFECT.Mat = Material( "effects/h2_carbine_beam" ) 
 
 function EFFECT:GetTracerOrigin( data )
 
@@ -25,13 +14,6 @@ function EFFECT:GetTracerOrigin( data )
 		if( not game.SinglePlayer() and entity:IsEFlagSet( EFL_DORMANT ) ) then return start; end
 		
 		if( entity:IsWeapon() and entity:IsCarriedByLocalPlayer() ) then
-			-- can't be done, can't call the real function
-			-- local origin = weapon:GetTracerOrigin();
-			-- if( origin ) then
-			-- 	return origin, angle, entity;
-			-- end
-			
-			-- use the view model
 			local pl = entity:GetOwner();
 			if( IsValid( pl ) ) then
 				local vm = pl:GetViewModel();
@@ -57,55 +39,71 @@ function EFFECT:GetTracerOrigin( data )
 
 end
 
+/*---------------------------------------------------------
+   EFFECT:Init(data)
+---------------------------------------------------------*/
+function EFFECT:Init(data)
 
-function EFFECT:Init( data )
+	self.WeaponEnt = data:GetEntity()
+	self.Attachment = data:GetAttachment()
+	
+	self.StartPos 	= self:GetTracerShootPos(data:GetOrigin(), self.WeaponEnt, self.Attachment)
+	self.EndPos 	= data:GetOrigin()
+	self.Dir 		= self.EndPos - self.StartPos
+	self.Entity:SetRenderBoundsWS(self.StartPos, self.EndPos)
+	
+	self.TracerTime 	= 0.4
+	
+	// Die when it reaches its target
+	self.DieTime 	= CurTime() + self.TracerTime
+	
+	// Play ricochet sound with random pitch
+	local vGrav 	= Vector(0, 0, -450)
+	local Dir	= self.Dir:GetNormalized()
+	
+	
 
-	self.StartPos = self:GetTracerOrigin( data );
-	self.EndPos = data:GetOrigin();
-	
-	self.Entity:SetRenderBoundsWS( self.StartPos, self.EndPos );
-
-	local diff = ( self.EndPos - self.StartPos );
-	
-	self.Normal = diff:GetNormal();
-	self.StartTime = 0;
-	self.LifeTime = ( diff:Length() + self.Length ) / self.Speed;
-	
-	-- whiz by sound
 	local weapon = data:GetEntity();
 	if( IsValid( weapon ) and ( not weapon:IsWeapon() or not weapon:IsCarriedByLocalPlayer() ) ) then
-
 		local dist, pos, time = util.DistanceToLine( self.StartPos, self.EndPos, EyePos() );
+		
+		local MaxDist = 64
+		
+		local VolumeMod = (1 - dist/MaxDist)*0.5
+		
+		if dist < MaxDist then
+			EmitSound("halo2/covenant carbine/beam_flyby1.wav",pos,LocalPlayer():EntIndex(),CHAN_WEAPON,VolumeMod,SNDLVL_GUNFIRE,0,100)
+		end
+		
 	end
 
+	
+	
 end
 
-
+/*---------------------------------------------------------
+   THINK
+---------------------------------------------------------*/
 function EFFECT:Think()
 
-	self.LifeTime = self.LifeTime - FrameTime();
-	self.StartTime = self.StartTime + FrameTime(); 
-
-	return self.LifeTime > 0;
-
+	if (CurTime() > self.DieTime) then return false end
+	
+	return true
 end
 
-
+/*---------------------------------------------------------
+   Draw the effect
+---------------------------------------------------------*/
 function EFFECT:Render()
 
-	local endDistance = self.Speed * self.StartTime;
-	local startDistance = endDistance - self.Length;
+	local fDelta = (self.DieTime - CurTime()) / self.TracerTime
+	fDelta = math.Clamp(fDelta, 0, 1)
+			
+	render.SetMaterial(self.Mat)
 	
-	startDistance = math.max( 120, startDistance );
-	endDistance = math.max( 0, endDistance );
-
-	local startPos = self.StartPos + self.Normal * startDistance;
-	local endPos = self.StartPos + self.Normal * endDistance;
+	local sinWave = math.sin(fDelta * math.pi)
 	
-	render.SetMaterial( MaterialFront );
-	render.DrawSprite( endPos, 0, 0, color_white );
-
-	render.SetMaterial( MaterialMain );
-	render.DrawBeam( startPos, endPos, 1, 0, 1, color_white );
+	local color = Color(127, 255, 0, 255 * fDelta)
 	
+	render.DrawBeam(self.StartPos, self.EndPos, 2 * fDelta, 0.5, 0.5, color)
 end
