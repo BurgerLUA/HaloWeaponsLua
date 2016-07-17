@@ -114,24 +114,26 @@ if CLIENT then
 		
 		self.ShouldDraw = false
 	
-		local pos = self:GetPos()
+		if self and self ~= NULL then
+			local pos = self:GetPos()
+			
+			--print("BOOM")
 		
-		--print("BOOM")
-	
-		for i=1, 30 do
-			local Particle = self.Emitter:Add("particle/smokesprites_000"..math.random(1,9),pos)
-			if Particle then
-				Particle:SetVelocity( VectorRand()*400 )
-				Particle:SetDieTime( 1 )
-				Particle:SetStartAlpha( 100 )
-				Particle:SetEndAlpha( 0 )
-				Particle:SetStartSize( math.Rand( 20,30 ) )
-				Particle:SetEndSize( math.Rand( 100, 200) )
-				Particle:SetRoll( math.Rand(0, 360) )
-				Particle:SetRollDelta( math.Rand(-1, 1) )
-				Particle:SetColor( 0 , 255 , 0 )
-				Particle:SetAirResistance( 200 ) 
-				Particle:SetGravity( Vector(0,0,0) ) 	
+			for i=1, 30 do
+				local Particle = self.Emitter:Add("particle/smokesprites_000"..math.random(1,9),pos)
+				if Particle then
+					Particle:SetVelocity( VectorRand()*400 )
+					Particle:SetDieTime( 1 )
+					Particle:SetStartAlpha( 100 )
+					Particle:SetEndAlpha( 0 )
+					Particle:SetStartSize( math.Rand( 20,30 ) )
+					Particle:SetEndSize( math.Rand( 100, 200) )
+					Particle:SetRoll( math.Rand(0, 360) )
+					Particle:SetRollDelta( math.Rand(-1, 1) )
+					Particle:SetColor( 0 , 255 , 0 )
+					Particle:SetAirResistance( 200 ) 
+					Particle:SetGravity( Vector(0,0,0) ) 	
+				end
 			end
 		end
 	end)

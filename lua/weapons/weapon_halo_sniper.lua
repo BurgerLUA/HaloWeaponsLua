@@ -70,7 +70,8 @@ SWEP.FatalHeadshot			= true
 
 SWEP.DamageFalloff			= 8000
 
-SWEP.TracerNames 			= {"h2_sniper_muzzle_effect","carbine_effect_ricochet"}
+SWEP.EnableCustomTracer 	= false
+SWEP.CustomShootEffectsTable = {"h2_sniper_muzzle_effect","carbine_effect_ricochet"}
 
 SWEP.CustomScope			= Material("scopeutra/halo2_sniper")
 SWEP.CustomScopeCOverride	= Color(0,255,255,100)

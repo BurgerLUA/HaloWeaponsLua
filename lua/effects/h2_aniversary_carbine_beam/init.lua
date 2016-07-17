@@ -1,14 +1,19 @@
 EFFECT.Mat = Material( "effects/h2_carbine_beam" ) 
 
+--[[
 function EFFECT:GetTracerOrigin( data )
 
 	-- this is almost a direct port of GetTracerOrigin in fx_tracer.cpp
 	local start = data:GetStart();
 	
+	--print(start)
+	
 	-- use attachment?
 	if( bit.band( data:GetFlags(), TRACER_FLAG_USEATTACHMENT ) == TRACER_FLAG_USEATTACHMENT ) then
 
 		local entity = data:GetEntity();
+		
+		--print("Entity:",entity)
 		
 		if( not IsValid( entity ) ) then return start; end
 		if( not game.SinglePlayer() and entity:IsEFlagSet( EFL_DORMANT ) ) then return start; end
@@ -38,6 +43,7 @@ function EFFECT:GetTracerOrigin( data )
 	return start;
 
 end
+--]]
 
 /*---------------------------------------------------------
    EFFECT:Init(data)
@@ -46,8 +52,22 @@ function EFFECT:Init(data)
 
 	self.WeaponEnt = data:GetEntity()
 	self.Attachment = data:GetAttachment()
+
+	--print("-------")
 	
-	self.StartPos 	= self:GetTracerShootPos(data:GetOrigin(), self.WeaponEnt, self.Attachment)
+	
+	if self.WeaponEnt and self.WeaponEnt ~= NULL then
+		--print("WEAPON FOUND",self.WeaponEnt,self.Attachment)
+		self.StartPos 	= self:GetTracerShootPos(data:GetOrigin(), self.WeaponEnt, self.Attachment)
+	else
+		--print("WEAPON NOT FOUND")
+		self.StartPos = data:GetStart()
+	end
+	
+	--print(self.StartPos)
+	
+	--print("-------")
+
 	self.EndPos 	= data:GetOrigin()
 	self.Dir 		= self.EndPos - self.StartPos
 	self.Entity:SetRenderBoundsWS(self.StartPos, self.EndPos)

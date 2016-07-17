@@ -61,7 +61,7 @@ SWEP.IronSightsAng 			= Vector(0, 0, 0)
 
 SWEP.FatalHeadshot			= false
 
-SWEP.DamageFalloff			= 300
+SWEP.DamageFalloff			= 100
 
 SWEP.TracerNames 			= {"h2_shotty_muzzle"}
 

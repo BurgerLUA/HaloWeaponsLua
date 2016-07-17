@@ -6,7 +6,7 @@ end
 SWEP.Category				= "Halo 2 Weapons"
 SWEP.PrintName				= "Fuel Rod Cannon"
 SWEP.Base					= "weapon_cs_base"
-SWEP.WeaponType				= "Primary"
+SWEP.WeaponType				= "Free"
 
 SWEP.Cost					= 3500
 SWEP.CSSMoveSpeed				= 200
@@ -14,7 +14,7 @@ SWEP.CSSMoveSpeed				= 200
 SWEP.Spawnable				= true
 SWEP.AdminOnly				= false
 
-SWEP.Slot					= 3
+SWEP.Slot					= 6-1
 SWEP.SlotPos				= 1
 
 SWEP.ViewModel 				= "models/weapons/v_halo_2_fuel_rod_cannon.mdl"
@@ -30,7 +30,7 @@ if CLIENT then
 	language.Add("halo_fuelrod_ammo","Fuel Rod")
 end
 
-SWEP.Primary.Damage			= 200
+SWEP.Primary.Damage			= 100
 SWEP.Primary.NumShots		= 1
 SWEP.Primary.Sound			= Sound("halo2/fuelrod/flak_fire_h2_1.wav")
 SWEP.Primary.Cone			= 0
@@ -77,6 +77,8 @@ SWEP.CustomScope			= Material("scopeutra/halo2_cov_carbine")
 SWEP.CustomScopeCOverride	= Color(0,255,255,100)
 
 SWEP.TracerNames 			= {"h2_aniversary_carbine_muzzle","h2_aniversary_carbine_muzzle_2"}
+
+SWEP.UseThisWorldModel		= Model("models/h2_fuel_rod.mdl")
 
 SWEP.ViewModelBoneMods = {
 	["ValveBiped.Bip01_L_Finger1"] = { scale = Vector(1, 1, 1), pos = Vector(1.098, 0, 0), angle = Angle(0, 0, 0) },

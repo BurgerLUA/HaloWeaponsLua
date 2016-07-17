@@ -66,7 +66,8 @@ SWEP.DamageFalloff			= 2000
 SWEP.HasIdle				= true
 
 SWEP.TracerName				= nil
-SWEP.TracerNames 			= {"h2_aniversary_carbine_beam","h2_aniversary_carbine_muzzle"}
+SWEP.EnableCustomTracer 	= false
+SWEP.CustomShootEffectsTable = {"h2_aniversary_carbine_beam","h2_aniversary_carbine_muzzle"}
 
 SWEP.CustomScope			= Material("scopeutra/halo2_cov_carbine")
 SWEP.CustomScopeCOverride	= Color(0,255,255,100)

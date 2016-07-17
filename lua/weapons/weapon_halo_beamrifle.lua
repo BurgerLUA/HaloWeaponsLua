@@ -39,7 +39,7 @@ SWEP.HeatMul				= 0
 SWEP.CoolMul				= 0
 
 SWEP.HasScope 				= true
-SWEP.ZoomAmount 			= 4
+SWEP.ZoomAmount 			= 8
 SWEP.HasCrosshair 			= false
 SWEP.HasCSSZoom 			= false
 
@@ -176,11 +176,11 @@ function SWEP:SpecialFire()
 	if CLIENT then
 		if IsFirstTimePredicted() then
 			if self.IsZoomed then
-				if self.ZoomAmount == 4 then
-					self.ZoomAmount = 24
+				if self.ZoomAmount == 8 then
+					self.ZoomAmount = 12
 					self:EmitSound(self.ZoomInSound)
 				else
-					self.ZoomAmount = 4
+					self.ZoomAmount = 8
 					self:EmitSound(self.ZoomOutSound)
 				end
 			end

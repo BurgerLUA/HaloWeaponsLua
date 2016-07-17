@@ -9,7 +9,7 @@ SWEP.Base					= "weapon_cs_base"
 SWEP.WeaponType				= "Free"
 
 SWEP.Cost					= 0
-SWEP.CSSMoveSpeed				= 250
+SWEP.CSSMoveSpeed				= 230
 
 SWEP.Spawnable				= true
 SWEP.AdminOnly				= false
@@ -23,7 +23,7 @@ SWEP.VModelFlip 			= false
 SWEP.HoldType				= "fist"
 
 
-SWEP.Primary.Damage			= 50
+SWEP.Primary.Damage			= 90
 SWEP.Primary.NumShots		= 1
 SWEP.Primary.ClipSize		= 100
 SWEP.Primary.SpareClip		= 0
@@ -31,7 +31,7 @@ SWEP.Primary.Delay			= 1
 SWEP.Primary.Ammo			= "smod_weeb"
 SWEP.Primary.Automatic 		= true 
 
-SWEP.Secondary.Damage		= 50
+SWEP.Secondary.Damage		= 100
 SWEP.Secondary.NumShots		= 1
 SWEP.Secondary.ClipSize		= -1
 SWEP.Secondary.SpareClip	= -1
@@ -93,7 +93,7 @@ function SWEP:DrawSpecial(ConeToSend)
 		
 	local HitPos = EyeTrace.HitPos
 	
-	if Target and Target ~= NULL and (Target:IsPlayer() or Target:IsNPC()) and Target:GetPos():Distance(self.Owner:GetPos()) <= self.DamageFalloff*3 + 20 then
+	if Target and Target ~= NULL and (Target:IsPlayer() or Target:IsNPC()) and Target:GetPos():Distance(self.Owner:GetPos()) <= self.DamageFalloff*4 + 20 then
 	
 		surface.SetDrawColor(Color(255,0,0,150))
 		surface.SetMaterial(self.Variable01)
@@ -121,7 +121,7 @@ function SWEP:PrimaryAttack()
 
 	local TraceData = {
 		start = self.Owner:EyePos(),
-		endpos = self.Owner:EyePos() + self.Owner:EyeAngles():Forward()*self.DamageFalloff*3,
+		endpos = self.Owner:EyePos() + self.Owner:EyeAngles():Forward()*self.DamageFalloff*4,
 		maxs = Vector(10,10,10),
 		mins = Vector(-10,-10,-10),
 		filter = self.Owner,
@@ -129,15 +129,20 @@ function SWEP:PrimaryAttack()
 		ignoreworld = true,
 	}
 	
+	self.Owner:LagCompensation( true )
+	
 	local TraceResult = util.TraceHull(TraceData)
+	
+	self.Owner:LagCompensation( false )
 	
 	local HitEntity = TraceResult.Entity
 
 	if HitEntity and HitEntity ~= NULL and (HitEntity:IsPlayer() or HitEntity:IsNPC()) then
 		self.Owner:SetAnimation(PLAYER_ATTACK1)
 		self:SendWeaponAnim(ACT_VM_HITCENTER)
-		self:SetNextPrimaryFire(CurTime() + self.Primary.Delay*2)
-		self:SetNextSecondaryFire(CurTime() + self.Primary.Delay*2)
+		
+		self:SetNextPrimaryFire(CurTime() + self.Primary.Delay)
+		self:SetNextSecondaryFire(CurTime() + self.Primary.Delay)
 		
 		
 		if SERVER then
@@ -180,7 +185,7 @@ function SWEP:SecondaryAttack()
 end
 
 function SWEP:Reload()
-	self:GetActivities()
+	--self:GetActivities()
 end
 
 function SWEP:Deploy()
