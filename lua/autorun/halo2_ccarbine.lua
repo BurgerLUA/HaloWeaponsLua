@@ -10,15 +10,6 @@ sound.Add(
 
 sound.Add(
 {
-    name = "posing_carbine",
-    channel = CHAN_STATIC,
-    volume = 1.0,
-    soundlevel = 80,
-     sound = "halo2/covenant carbine/posing_carb.wav"
-})
-
-sound.Add(
-{
     name = "empty_carbine2",
     channel = CHAN_STATIC,
     volume = 1.0,

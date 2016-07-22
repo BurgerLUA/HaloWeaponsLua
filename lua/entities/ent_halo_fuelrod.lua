@@ -55,7 +55,7 @@ function ENT:PhysicsCollide( data, collider )
 	collider:EnableCollisions(false)
 	
 	if self.Owner then
-		util.BlastDamage( self, self.Owner, self:GetPos() , 400, 100 )
+		util.BlastDamage( self, self.Owner, data.HitPos , 400, 100 )
 	end
 	
 	
@@ -65,6 +65,7 @@ function ENT:PhysicsCollide( data, collider )
 	
 	net.Start("FR_Detonate")
 		net.WriteEntity(self)
+		net.WriteVector(data.HitPos)
 	net.Broadcast()
 
 end
@@ -111,16 +112,13 @@ if CLIENT then
 	net.Receive("FR_Detonate",function(len)
 	
 		local self = net.ReadEntity()
+		local hitpos = net.ReadVector()
 		
 		self.ShouldDraw = false
 	
 		if self and self ~= NULL then
-			local pos = self:GetPos()
-			
-			--print("BOOM")
-		
 			for i=1, 30 do
-				local Particle = self.Emitter:Add("particle/smokesprites_000"..math.random(1,9),pos)
+				local Particle = self.Emitter:Add("particle/smokesprites_000"..math.random(1,9),hitpos)
 				if Particle then
 					Particle:SetVelocity( VectorRand()*400 )
 					Particle:SetDieTime( 1 )

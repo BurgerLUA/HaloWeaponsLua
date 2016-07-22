@@ -6,10 +6,10 @@ end
 SWEP.Category				= "Halo 2 Weapons"
 SWEP.PrintName				= "Energy Sword"
 SWEP.Base					= "weapon_cs_base"
-SWEP.WeaponType				= "Free"
+SWEP.WeaponType				= "Melee"
 
 SWEP.Cost					= 0
-SWEP.CSSMoveSpeed				= 230
+SWEP.CSSMoveSpeed			= 230
 
 SWEP.Spawnable				= true
 SWEP.AdminOnly				= false
@@ -20,7 +20,7 @@ SWEP.SlotPos				= 1
 SWEP.ViewModel 				= "models/weapons/v_halo_2_energy_sword.mdl"
 SWEP.WorldModel				= "models/weapons/w_knife_t.mdl"
 SWEP.VModelFlip 			= false
-SWEP.HoldType				= "fist"
+SWEP.HoldType				= "knife"
 
 
 SWEP.Primary.Damage			= 90
@@ -57,10 +57,14 @@ SWEP.MeleeSoundWallHit		= Sound("halo2/energy_sword/sword_hit_env1.wav")
 SWEP.MeleeSoundFleshSmall	= Sound("halo2/energy_sword/energy_hit_char_5.wav")
 SWEP.MeleeSoundFleshLarge	= Sound("halo2/energy_sword/energy_hit_char_2.wav")
 
-SWEP.DamageFalloff			= 40
-
 SWEP.UseThisWorldModel		= Model("models/blade.mdl")
 SWEP.ShowWorldModel         = false
+
+SWEP.DamageFalloff			= 50
+SWEP.MeleeRange				= 50
+SWEP.MeleeDamageType		= DMG_ENERGYBEAM
+SWEP.MeleeDelay				= 0.2
+
 
 SWEP.ViewModelBoneMods = {
 	["ValveBiped.Bip01_L_Finger1"] = { scale = Vector(1, 1, 1), pos = Vector(0, -0.06, 0), angle = Angle(-1.116, 15.425, 0) },
@@ -72,9 +76,18 @@ SWEP.ViewModelBoneMods = {
 	["ValveBiped.Bip01_L_Finger31"] = { scale = Vector(1, 1, 1), pos = Vector(0, 0, 0), angle = Angle(0.485, -9.593, 0) }
 }
 
+--[[
 SWEP.WElements = {
 	["energy"] = { type = "Model", model = "models/blade.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(2.361, 0.885, -0.329), angle = Angle(80.505, -106.989, -0.759), size = Vector(0.894, 0.894, 0.894), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
 }
+--]]
+
+SWEP.WElements = {
+	["energy"] = { type = "Model", model = "models/blade.mdl", bone = "ValveBiped.Bip01_R_Forearm", rel = "", pos = Vector(14, 1, 0.759), angle = Angle(0, -90, 0), size = Vector(0.8, 0.8, 0.8), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
+}
+
+
+
 
 SWEP.Variable01 = Material("crosshair/energy_sword_reticle")
 
@@ -138,7 +151,8 @@ function SWEP:PrimaryAttack()
 	local HitEntity = TraceResult.Entity
 
 	if HitEntity and HitEntity ~= NULL and (HitEntity:IsPlayer() or HitEntity:IsNPC()) then
-		self.Owner:SetAnimation(PLAYER_ATTACK1)
+		--self.Owner:SetAnimation(PLAYER_ATTACK1)
+		self.Owner:DoAnimationEvent( ACT_GMOD_GESTURE_MELEE_SHOVE_1HAND )
 		self:SendWeaponAnim(ACT_VM_HITCENTER)
 		
 		self:SetNextPrimaryFire(CurTime() + self.Primary.Delay)
@@ -149,14 +163,17 @@ function SWEP:PrimaryAttack()
 			self.Owner:SetVelocity( (self.Owner:GetPos() - HitEntity:GetPos()):Angle():Forward()*-2000 )
 		end
 		
-		local Swing = self:NewSwing(self.Primary.Damage,HitEntity)
+		local Swing = self:NewSwing(self.Primary.Damage,HitEntity,0.1)
 		if Swing and (Swing:IsPlayer() or Swing:IsNPC()) then
 			self:AddDurability(-10)
 		end
 
 
 	else
-		self.Owner:SetAnimation(PLAYER_ATTACK1)
+		--self.Owner:SetAnimation(PLAYER_ATTACK1)
+		
+		
+		self.Owner:DoAnimationEvent( ACT_GMOD_GESTURE_MELEE_SHOVE_1HAND )
 		self:SendWeaponAnim(ACT_VM_PRIMARYATTACK)
 		self:SetNextPrimaryFire(CurTime() + self.Primary.Delay)
 		self:SetNextSecondaryFire(CurTime() + self.Primary.Delay)
@@ -172,8 +189,13 @@ end
 
 function SWEP:SecondaryAttack()
 	if self:IsUsing() then return end
-	self.Owner:SetAnimation(PLAYER_ATTACK1)
+	
+	--self.Owner:SetAnimation(PLAYER_ATTACK1)
+	
+	self.Owner:DoAnimationEvent( ACT_GMOD_GESTURE_MELEE_SHOVE_2HAND )
+	
 	self:SendWeaponAnim(ACT_VM_PRIMARYATTACK)
+	
 	self:SetNextPrimaryFire(CurTime() + self.Secondary.Delay)
 	self:SetNextSecondaryFire(CurTime() + self.Secondary.Delay)
 	

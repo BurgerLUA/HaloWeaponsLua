@@ -10,7 +10,7 @@ SWEP.Base					= "weapon_cs_base"
 SWEP.WeaponType				= "Primary"
 
 SWEP.Cost					= 3500
-SWEP.CSSMoveSpeed			= 240
+SWEP.CSSMoveSpeed			= 230
 
 SWEP.Spawnable				= true
 SWEP.AdminOnly				= false
@@ -70,6 +70,9 @@ SWEP.TracerNames 			= {"h2_prifle_muzzle","plasma_rifle_effect"}
 
 SWEP.BulletEnt				= "ent_halo_blueplasma"
 SWEP.SourceOverride			= Vector(2,-20,-3)
+
+SWEP.MeleeDamageType		= DMG_CLUB
+SWEP.MeleeRange				= 40
 
 SWEP.MeleeSoundMiss			= Sound("halo2/plasmarifle/melee.wav")
 SWEP.MeleeSoundWallHit		= Sound("halo2/plasmarifle/melee.wav")

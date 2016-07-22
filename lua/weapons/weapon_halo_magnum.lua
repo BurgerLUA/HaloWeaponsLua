@@ -9,7 +9,7 @@ SWEP.Base					= "weapon_cs_base"
 SWEP.WeaponType				= "Secondary"
 
 SWEP.Cost					= 1337
-SWEP.CSSMoveSpeed			= 250
+SWEP.CSSMoveSpeed			= 220
 
 SWEP.Spawnable				= true
 SWEP.AdminOnly				= false
@@ -60,6 +60,9 @@ SWEP.HasGoodSights			= true
 SWEP.IronSightTime			= 0.125
 SWEP.IronSightsPos 			= Vector(-2, 0, 1.5)
 SWEP.IronSightsAng 			= Vector(0, 0, 0)
+
+SWEP.MeleeDamageType		= DMG_CLUB
+SWEP.MeleeRange				= 40
 
 SWEP.DamageFalloff			= 2000
 

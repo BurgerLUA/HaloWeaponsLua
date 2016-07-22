@@ -9,7 +9,7 @@ SWEP.Base					= "weapon_cs_base"
 SWEP.WeaponType				= "Primary"
 
 SWEP.Cost					= 1337
-SWEP.CSSMoveSpeed			= 230
+SWEP.CSSMoveSpeed			= 220
 
 SWEP.Spawnable				= true
 SWEP.AdminOnly				= false
@@ -27,14 +27,14 @@ SWEP.Primary.NumShots		= 1
 SWEP.Primary.Sound			= nil
 SWEP.Primary.Cone			= 0
 SWEP.Primary.ClipSize		= 36
-SWEP.Primary.SpareClip		= 36*4
-SWEP.Primary.Delay			= 1/(600/60)
+SWEP.Primary.SpareClip		= 36*2
+SWEP.Primary.Delay			= 1/(500/60)
 SWEP.Primary.Ammo			= "css_357sig"
 SWEP.Primary.Automatic 		= false
 
 SWEP.BurstSound 			= Sound("halo2/battle/1.wav")
 
-SWEP.RecoilMul				= 0.25
+SWEP.RecoilMul				= 0.5
 SWEP.SideRecoilMul			= 0.1
 SWEP.VelConeMul				= 1.25
 SWEP.HeatMul				= 0.25

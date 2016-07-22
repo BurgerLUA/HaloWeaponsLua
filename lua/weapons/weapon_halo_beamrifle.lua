@@ -9,7 +9,7 @@ SWEP.Base					= "weapon_cs_base"
 SWEP.WeaponType				= "Primary"
 
 SWEP.Cost					= 1337
-SWEP.CSSMoveSpeed			= 220
+SWEP.CSSMoveSpeed			= 190
 
 SWEP.Spawnable				= true
 SWEP.AdminOnly				= false
@@ -70,8 +70,8 @@ SWEP.FatalHeadshot			= true
 
 SWEP.DamageFalloff			= 8000
 
-SWEP.TracerName				= nil
-SWEP.TracerNames 			= {"beam_rifle_effect","h2_beam_rifle_muzzle","h2_beam_rifle_beam"}
+SWEP.EnableCustomTracer 	= false
+SWEP.CustomShootEffectsTable 			= {"beam_rifle_effect","h2_beam_rifle_muzzle","h2_beam_rifle_beam"}
 
 SWEP.CustomScope			= Material("scopeutra/beam_rifle")
 SWEP.CustomScopeCOverride	= Color(0,255,255,100)

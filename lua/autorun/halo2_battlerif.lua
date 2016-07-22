@@ -9,15 +9,6 @@ sound.Add(
 
 sound.Add(
 {
-    name = "posing_br",
-    channel = CHAN_STATIC,
-    volume = 1.0,
-    soundlevel = 80,
-    sound = "halo2/battle/battle_rifle_posing2.wav"
-})
-
-sound.Add(
-{
     name = "brifh2draw",
     channel = CHAN_STATIC,
     volume = 1.0,
