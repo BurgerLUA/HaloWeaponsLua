@@ -5,7 +5,7 @@ end
 
 SWEP.Category				= "Halo 2 Weapons"
 SWEP.PrintName				= "Sniper"
-SWEP.Base					= "weapon_cs_base"
+SWEP.Base					= "weapon_burger_core_base"
 SWEP.WeaponType				= "Primary"
 
 SWEP.Cost					= 1337
@@ -29,12 +29,12 @@ SWEP.Primary.Cone			= 0
 SWEP.Primary.ClipSize		= 4
 SWEP.Primary.SpareClip		= 4*5
 SWEP.Primary.Delay			= 1/(60/60)
-SWEP.Primary.Ammo			= "css_338"
+SWEP.Primary.Ammo			= "bb_338"
 SWEP.Primary.Automatic 		= false
 
 SWEP.RecoilMul				= 0.25
 SWEP.SideRecoilMul			= 0.1
-SWEP.VelConeMul				= 0
+SWEP.MoveConeMul				= 0
 SWEP.HeatMul				= 0
 SWEP.CoolMul				= 0
 
@@ -81,7 +81,7 @@ SWEP.MagDelayMod			= 0.25
 
 SWEP.ShowWorldModel         = false
 
-SWEP.UseThisWorldModel		= Model("models/sniper_rifle_h2.mdl")
+SWEP.DisplayModel		= Model("models/sniper_rifle_h2.mdl")
 
 SWEP.ViewModelBoneMods = {
 	["body"] = { scale = Vector(1, 1, 1), pos = Vector(-7.112, -0.179, -0.271), angle = Angle(0, 0, 0) }

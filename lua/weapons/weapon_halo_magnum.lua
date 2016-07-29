@@ -5,7 +5,7 @@ end
 
 SWEP.Category				= "Halo 2 Weapons"
 SWEP.PrintName				= "Magnum"
-SWEP.Base					= "weapon_cs_base"
+SWEP.Base					= "weapon_burger_core_base"
 SWEP.WeaponType				= "Secondary"
 
 SWEP.Cost					= 1337
@@ -29,14 +29,14 @@ SWEP.Primary.Cone			= 0.005
 SWEP.Primary.ClipSize		= 12
 SWEP.Primary.SpareClip		= 12*3
 SWEP.Primary.Delay			= 1/(360/60)
-SWEP.Primary.Ammo			= "css_50ae"
+SWEP.Primary.Ammo			= "bb_50ae"
 SWEP.Primary.Automatic 		= false
 
 SWEP.FatalHeadshot			= true
 
 SWEP.RecoilMul				= 1
 SWEP.SideRecoilMul			= 0.1
-SWEP.VelConeMul				= 0.25
+SWEP.MoveConeMul				= 0.25
 SWEP.HeatMul				= 1
 SWEP.CoolMul				= 0.5
 
@@ -68,7 +68,7 @@ SWEP.DamageFalloff			= 2000
 
 SWEP.ReloadSound			= Sound("halo2/magnum/magnum_reload_1.wav")
 
-SWEP.UseThisWorldModel		= Model("models/magnum_h2.mdl")
+SWEP.DisplayModel		= Model("models/magnum_h2.mdl")
 
 SWEP.AddFOV					= -10
 

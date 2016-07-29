@@ -5,7 +5,7 @@ end
 
 SWEP.Category				= "Halo 2 Weapons"
 SWEP.PrintName				= "Shotgun"
-SWEP.Base					= "weapon_cs_base"
+SWEP.Base					= "weapon_burger_core_base"
 SWEP.WeaponType				= "Primary"
 
 SWEP.Cost					= 1337
@@ -29,12 +29,12 @@ SWEP.Primary.Cone			= 0.03
 SWEP.Primary.ClipSize		= 12
 SWEP.Primary.SpareClip		= 12*3
 SWEP.Primary.Delay			= 0.9
-SWEP.Primary.Ammo			= "css_12gauge"
+SWEP.Primary.Ammo			= "bb_12gauge"
 SWEP.Primary.Automatic 		= true
 
 SWEP.RecoilMul				= 0.1
 SWEP.SideRecoilMul			= 0.1
-SWEP.VelConeMul				= 0
+SWEP.MoveConeMul				= 0
 SWEP.HeatMul				= 0
 SWEP.CoolMul				= 1
 
@@ -70,7 +70,7 @@ SWEP.TracerNames 			= {"h2_shotty_muzzle"}
 
 SWEP.ShowWorldModel         = false
 
-SWEP.UseThisWorldModel		= Model("models/hshotgun.mdl")
+SWEP.DisplayModel		= Model("models/hshotgun.mdl")
 
 SWEP.WElements = {
 	["shotgun"] = { type = "Model", model = "models/hshotgun.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(4.218, 0.853, 0), angle = Angle(-83.193, -148.736, -59.64), size = Vector(1.041, 1.041, 1.041), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }

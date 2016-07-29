@@ -5,7 +5,7 @@ end
 
 SWEP.Category				= "Halo 2 Weapons"
 SWEP.PrintName				= "Battle Rifle"
-SWEP.Base					= "weapon_cs_base"
+SWEP.Base					= "weapon_burger_core_base"
 SWEP.WeaponType				= "Primary"
 
 SWEP.Cost					= 1337
@@ -29,19 +29,19 @@ SWEP.Primary.Cone			= 0
 SWEP.Primary.ClipSize		= 36
 SWEP.Primary.SpareClip		= 36*2
 SWEP.Primary.Delay			= 1/(500/60)
-SWEP.Primary.Ammo			= "css_357sig"
+SWEP.Primary.Ammo			= "bb_357sig"
 SWEP.Primary.Automatic 		= false
 
 SWEP.BurstSound 			= Sound("halo2/battle/1.wav")
 
 SWEP.RecoilMul				= 0.5
 SWEP.SideRecoilMul			= 0.1
-SWEP.VelConeMul				= 1.25
+SWEP.MoveConeMul			= 1.25
 SWEP.HeatMul				= 0.25
 SWEP.CoolMul				= 1
 
 SWEP.HasScope 				= true
-SWEP.ZoomAmount 			= 4
+SWEP.ZoomAmount 			= 3
 SWEP.HasCrosshair 			= false
 SWEP.HasCSSZoom 			= false
 
@@ -84,7 +84,7 @@ SWEP.ShowWorldModel         = false
 
 SWEP.AlwaysBurst			= true
 
-SWEP.UseThisWorldModel		= Model("models/brifle_h2.mdl")
+SWEP.DisplayModel		= Model("models/brifle_h2.mdl")
 
 SWEP.ViewModelBoneMods = {
 	["ValveBiped.Bip01_L_UpperArm"] = { scale = Vector(1, 1, 1), pos = Vector(1.246, -0.095, 0.377), angle = Angle(0, 0, 0) },
@@ -179,4 +179,6 @@ function SWEP:SpecialFire()
 	self:NewSwing(90)
 
 end
+
+SWEP.AddFOV					= 20
 

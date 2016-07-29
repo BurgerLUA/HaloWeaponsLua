@@ -5,7 +5,7 @@ end
 
 SWEP.Category				= "Halo 2 Weapons"
 SWEP.PrintName				= "SMG"
-SWEP.Base					= "weapon_cs_base"
+SWEP.Base					= "weapon_burger_core_base"
 SWEP.WeaponType				= "Primary"
 
 SWEP.Cost					= 1337
@@ -29,12 +29,12 @@ SWEP.Primary.Cone			= 0.01
 SWEP.Primary.ClipSize		= 60
 SWEP.Primary.SpareClip		= 60*3
 SWEP.Primary.Delay			= 1/(900/60)
-SWEP.Primary.Ammo			= "css_57mm"
+SWEP.Primary.Ammo			= "bb_57mm"
 SWEP.Primary.Automatic 		= true
 
 SWEP.RecoilMul				= 1
 SWEP.SideRecoilMul			= 0.1
-SWEP.VelConeMul				= 0
+SWEP.MoveConeMul				= 0
 SWEP.HeatMul				= 3
 SWEP.CoolMul				= 0.26
 
@@ -74,7 +74,7 @@ SWEP.MagDelayMod			= 0.25
 SWEP.MagMoveMod 			= Vector(-200,0,0)
 SWEP.MagAngMod				= Angle(0,90,0)
 
-SWEP.UseThisWorldModel		= Model("models/smgh2.mdl")
+SWEP.DisplayModel		= Model("models/smgh2.mdl")
 
 SWEP.ShowWorldModel         = false
 SWEP.WElements = {

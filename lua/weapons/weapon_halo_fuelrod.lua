@@ -5,7 +5,7 @@ end
 
 SWEP.Category				= "Halo 2 Weapons"
 SWEP.PrintName				= "Fuel Rod Cannon"
-SWEP.Base					= "weapon_cs_base"
+SWEP.Base					= "weapon_burger_core_base"
 SWEP.WeaponType				= "Free"
 
 SWEP.Cost					= 3500
@@ -42,7 +42,7 @@ SWEP.Primary.Automatic 		= true
 
 SWEP.RecoilMul				= 0.01
 SWEP.SideRecoilMul			= 0
-SWEP.VelConeMul				= 0
+SWEP.MoveConeMul				= 0
 SWEP.HeatMul				= 0
 
 SWEP.HasScope 				= true
@@ -78,7 +78,7 @@ SWEP.CustomScopeCOverride	= Color(0,255,255,100)
 
 SWEP.TracerNames 			= {"h2_aniversary_carbine_muzzle","h2_aniversary_carbine_muzzle_2"}
 
-SWEP.UseThisWorldModel		= Model("models/h2_fuel_rod.mdl")
+SWEP.DisplayModel		= Model("models/h2_fuel_rod.mdl")
 
 SWEP.ViewModelBoneMods = {
 	["ValveBiped.Bip01_L_Finger1"] = { scale = Vector(1, 1, 1), pos = Vector(1.098, 0, 0), angle = Angle(0, 0, 0) },

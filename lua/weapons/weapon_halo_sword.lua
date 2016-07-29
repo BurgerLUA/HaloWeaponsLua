@@ -5,7 +5,7 @@ end
 
 SWEP.Category				= "Halo 2 Weapons"
 SWEP.PrintName				= "Energy Sword"
-SWEP.Base					= "weapon_cs_base"
+SWEP.Base					= "weapon_burger_core_base"
 SWEP.WeaponType				= "Melee"
 
 SWEP.Cost					= 0
@@ -57,7 +57,7 @@ SWEP.MeleeSoundWallHit		= Sound("halo2/energy_sword/sword_hit_env1.wav")
 SWEP.MeleeSoundFleshSmall	= Sound("halo2/energy_sword/energy_hit_char_5.wav")
 SWEP.MeleeSoundFleshLarge	= Sound("halo2/energy_sword/energy_hit_char_2.wav")
 
-SWEP.UseThisWorldModel		= Model("models/blade.mdl")
+SWEP.DisplayModel		= Model("models/blade.mdl")
 SWEP.ShowWorldModel         = false
 
 SWEP.DamageFalloff			= 50

@@ -5,7 +5,7 @@ end
 
 SWEP.Category				= "Halo 2 Weapons"
 SWEP.PrintName				= "Beam Rifle"
-SWEP.Base					= "weapon_cs_base"
+SWEP.Base					= "weapon_burger_core_base"
 SWEP.WeaponType				= "Primary"
 
 SWEP.Cost					= 1337
@@ -34,7 +34,7 @@ SWEP.Primary.Automatic 		= false
 
 SWEP.RecoilMul				= 0.25
 SWEP.SideRecoilMul			= 0.1
-SWEP.VelConeMul				= 0
+SWEP.MoveConeMul				= 0
 SWEP.HeatMul				= 0
 SWEP.CoolMul				= 0
 
@@ -78,7 +78,7 @@ SWEP.CustomScopeCOverride	= Color(0,255,255,100)
 
 SWEP.ShowWorldModel         = false
 
-SWEP.UseThisWorldModel		= Model("models/beamrifle_h2.mdl")
+SWEP.DisplayModel		= Model("models/beamrifle_h2.mdl")
 
 SWEP.UsesBuildUp			= true
 SWEP.BuildUpAmount 			= 33

@@ -6,7 +6,7 @@ end
 
 SWEP.Category				= "Halo 2 Weapons"
 SWEP.PrintName				= "Plasma Rifle"
-SWEP.Base					= "weapon_cs_base"
+SWEP.Base					= "weapon_burger_core_base"
 SWEP.WeaponType				= "Primary"
 
 SWEP.Cost					= 3500
@@ -35,7 +35,7 @@ SWEP.Primary.Automatic 		= true
 
 SWEP.RecoilMul				= 0.125
 SWEP.SideRecoilMul			= 1
-SWEP.VelConeMul				= 0.75
+SWEP.MoveConeMul				= 0.75
 SWEP.HeatMul				= 1
 SWEP.CoolMul				= 0.5
 
@@ -83,7 +83,7 @@ SWEP.UsesBuildUp			= true
 SWEP.BuildUpAmount 			= 5.5
 SWEP.BuildUpCoolAmount 		= 20
 
-SWEP.UseThisWorldModel		= Model("models/prifle2.mdl")
+SWEP.DisplayModel		= Model("models/prifle2.mdl")
 
 SWEP.ShowWorldModel			= false
 SWEP.ViewModelBoneMods = {
