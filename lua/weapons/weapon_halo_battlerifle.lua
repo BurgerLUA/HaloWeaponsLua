@@ -28,7 +28,7 @@ SWEP.Primary.Sound			= nil
 SWEP.Primary.Cone			= 0
 SWEP.Primary.ClipSize		= 36
 SWEP.Primary.SpareClip		= 36*2
-SWEP.Primary.Delay			= 1/(500/60)
+SWEP.Primary.Delay			= 1/(600/60)
 SWEP.Primary.Ammo			= "bb_357sig"
 SWEP.Primary.Automatic 		= false
 
