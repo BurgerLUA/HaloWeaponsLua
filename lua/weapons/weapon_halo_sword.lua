@@ -57,14 +57,17 @@ SWEP.MeleeSoundWallHit		= Sound("halo2/energy_sword/sword_hit_env1.wav")
 SWEP.MeleeSoundFleshSmall	= Sound("halo2/energy_sword/energy_hit_char_5.wav")
 SWEP.MeleeSoundFleshLarge	= Sound("halo2/energy_sword/energy_hit_char_2.wav")
 
-SWEP.DisplayModel		= Model("models/blade.mdl")
+SWEP.DisplayModel			= Model("models/blade.mdl")
 SWEP.ShowWorldModel         = false
 
 SWEP.DamageFalloff			= 50
 SWEP.MeleeRange				= 50
+SWEP.MeleeSize				= 32
 SWEP.MeleeDamageType		= DMG_ENERGYBEAM
 SWEP.MeleeDelay				= 0.15
 
+SWEP.HasDurability 			= true
+SWEP.DurabilityPerHit 		= -10
 
 SWEP.ViewModelBoneMods = {
 	["ValveBiped.Bip01_L_Finger1"] = { scale = Vector(1, 1, 1), pos = Vector(0, -0.06, 0), angle = Angle(-1.116, 15.425, 0) },
@@ -125,9 +128,6 @@ function SWEP:DrawSpecial(ConeToSend)
 
 end
 
-
-
-
 function SWEP:PrimaryAttack()
 
 	if self:IsUsing() then return end
@@ -164,10 +164,7 @@ function SWEP:PrimaryAttack()
 		end
 		
 		local Swing = self:NewSwing(self.Primary.Damage,self.Primary.Delay,HitEntity,self.MeleeDelay)
-		if Swing and (Swing:IsPlayer() or Swing:IsNPC()) then
-			self:AddDurability(-10)
-		end
-
+		self:AddDurability(-10)
 
 	else
 		--self.Owner:SetAnimation(PLAYER_ATTACK1)
@@ -178,12 +175,9 @@ function SWEP:PrimaryAttack()
 		self:SetNextPrimaryFire(CurTime() + self.Primary.Delay)
 		self:SetNextSecondaryFire(CurTime() + self.Primary.Delay)
 		
-		local Swing = self:NewSwing(self.Primary.Damage,self.Primary.Delay)
-		if Swing and (Swing:IsPlayer() or Swing:IsNPC()) then
-			self:AddDurability(-10)
-		end
+		self:NewSwing(self.Primary.Damage,self.Primary.Delay)
+
 	end
-		
 		
 end
 
@@ -199,10 +193,7 @@ function SWEP:SecondaryAttack()
 	self:SetNextPrimaryFire(CurTime() + self.Secondary.Delay)
 	self:SetNextSecondaryFire(CurTime() + self.Secondary.Delay)
 	
-	local Swing = self:NewSwing(self.Primary.Damage,self.Secondary.Delay)
-	if Swing and (Swing:IsPlayer() or Swing:IsNPC()) then
-		self:AddDurability(-10)
-	end
+	self:NewSwing(self.Primary.Damage,self.Secondary.Delay)
 
 end
 
@@ -233,19 +224,6 @@ function SWEP:SpecialThink()
 			dlight.DieTime = CurTime() + 1
 		end 
 	end
-end
-
-function SWEP:AddDurability(amount)
-
-	self:SetClip1( math.Clamp(self:Clip1() + amount,0,100) )
-
-	if self:Clip1() <= 0 then
-		self.Owner:EmitSound("physics/metal/sawblade_stick1.wav")
-		if self and SERVER then
-			self.Owner:StripWeapon(self:GetClass())
-		end
-	end
-	
 end
 
 function SWEP:BlockDamage(damage,attacker)
