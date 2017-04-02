@@ -22,7 +22,7 @@ SWEP.WorldModel				= Model("models/weapons/w_irifle.mdl")
 SWEP.VModelFlip 			= false
 SWEP.HoldType				= "ar2"
 
-SWEP.Primary.Damage			= 22.5
+SWEP.Primary.Damage			= 35
 SWEP.Primary.NumShots		= 1
 SWEP.Primary.Sound			= Sound("halo2/covenant carbine/fire1.wav")
 SWEP.Primary.Cone			= 0
@@ -34,7 +34,7 @@ SWEP.Primary.Automatic 		= false
 
 SWEP.RecoilMul				= 0.5
 SWEP.SideRecoilMul			= 0.1
-SWEP.MoveConeMul				= 0.75
+SWEP.MoveConeMul			= 0.75
 SWEP.HeatMul				= 0.5
 SWEP.CoolMul				= 1
 
@@ -59,9 +59,9 @@ SWEP.IronSightTime			= 0
 SWEP.IronSightsPos 			= Vector(-4, -100, -3)
 SWEP.IronSightsAng 			= Vector(0, 0, 0)
 
-SWEP.FatalHeadshot			= true
+SWEP.FatalHeadshot			= false
 
-SWEP.DamageFalloff			= 2000
+SWEP.DamageFalloff			= 3000
 
 SWEP.HasIdle				= true
 

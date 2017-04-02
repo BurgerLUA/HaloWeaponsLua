@@ -22,7 +22,7 @@ SWEP.WorldModel				= Model("models/weapons/w_irifle.mdl")
 SWEP.VModelFlip 			= false
 SWEP.HoldType				= "ar2"
 
-SWEP.Primary.Damage			= 75
+SWEP.Primary.Damage			= 90
 SWEP.Primary.NumShots		= 1
 SWEP.Primary.Sound			= Sound("halo2/beam_rifle/beam_rifle_fire_1.wav")
 SWEP.Primary.Cone			= 0
@@ -39,7 +39,7 @@ SWEP.HeatMul				= 0
 SWEP.CoolMul				= 0
 
 SWEP.HasScope 				= true
-SWEP.ZoomAmount 			= 8
+SWEP.ZoomAmount 			= 4
 SWEP.HasCrosshair 			= false
 SWEP.HasCSSZoom 			= false
 
@@ -74,7 +74,7 @@ SWEP.EnableCustomTracer 	= false
 SWEP.CustomShootEffectsTable 			= {"beam_rifle_effect","h2_beam_rifle_muzzle","h2_beam_rifle_beam"}
 
 SWEP.CustomScope			= Material("scopeutra/beam_rifle")
-SWEP.CustomScopeCOverride	= Color(0,255,255,100)
+SWEP.CustomScopeCOverride	= Color(255,255,0,255)
 
 SWEP.ShowWorldModel         = false
 
@@ -176,11 +176,11 @@ function SWEP:SpecialFire()
 	if CLIENT then
 		if IsFirstTimePredicted() then
 			if self.IsZoomed then
-				if self.ZoomAmount == 8 then
-					self.ZoomAmount = 12
+				if self.ZoomAmount == 4 then
+					self.ZoomAmount = 24
 					self:EmitSound(self.ZoomInSound)
 				else
-					self.ZoomAmount = 8
+					self.ZoomAmount = 4
 					self:EmitSound(self.ZoomOutSound)
 				end
 			end

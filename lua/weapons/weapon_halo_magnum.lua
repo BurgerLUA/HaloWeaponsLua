@@ -11,7 +11,7 @@ SWEP.WeaponType				= "Secondary"
 SWEP.Cost					= 1337
 SWEP.CSSMoveSpeed			= 220
 
-SWEP.Spawnable				= true
+SWEP.Spawnable				= false
 SWEP.AdminOnly				= false
 
 SWEP.Slot					= 2 - 1

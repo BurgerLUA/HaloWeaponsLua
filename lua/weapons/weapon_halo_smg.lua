@@ -25,7 +25,7 @@ SWEP.HoldType				= "smg"
 SWEP.Primary.Damage			= 15
 SWEP.Primary.NumShots		= 1
 SWEP.Primary.Sound			= Sound("halo2/smg/smg_h2_1.wav")
-SWEP.Primary.Cone			= 0.01
+SWEP.Primary.Cone			= 0.02
 SWEP.Primary.ClipSize		= 60
 SWEP.Primary.SpareClip		= 60*3
 SWEP.Primary.Delay			= 1/(900/60)
@@ -34,7 +34,7 @@ SWEP.Primary.Automatic 		= true
 
 SWEP.RecoilMul				= 1
 SWEP.SideRecoilMul			= 0.1
-SWEP.MoveConeMul				= 0
+SWEP.MoveConeMul			= 0
 SWEP.HeatMul				= 3
 SWEP.CoolMul				= 0.26
 

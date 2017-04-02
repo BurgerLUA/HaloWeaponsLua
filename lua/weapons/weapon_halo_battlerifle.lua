@@ -22,7 +22,7 @@ SWEP.WorldModel				= Model("models/weapons/w_irifle.mdl")
 SWEP.VModelFlip 			= false
 SWEP.HoldType				= "ar2"
 
-SWEP.Primary.Damage			= 15
+SWEP.Primary.Damage			= 35
 SWEP.Primary.NumShots		= 1
 SWEP.Primary.Sound			= nil
 SWEP.Primary.Cone			= 0
@@ -34,11 +34,11 @@ SWEP.Primary.Automatic 		= false
 
 SWEP.BurstSound 			= Sound("halo2/battle/1.wav")
 
-SWEP.RecoilMul				= 0.5
-SWEP.SideRecoilMul			= 0.1
-SWEP.MoveConeMul			= 1.25
-SWEP.HeatMul				= 0.25
-SWEP.CoolMul				= 1
+SWEP.RecoilMul				= 0.75
+SWEP.SideRecoilMul			= 0.25
+SWEP.MoveConeMul			= 1
+SWEP.HeatMul				= 0.5
+SWEP.CoolMul				= 0.5
 
 SWEP.HasScope 				= true
 SWEP.ZoomAmount 			= 3
@@ -61,7 +61,7 @@ SWEP.IronSightTime			= 0.25
 SWEP.IronSightsPos 			= Vector(-3.5, 0, 0)
 SWEP.IronSightsAng 			= Vector(0, 0, 0)
 
-SWEP.FatalHeadshot			= true
+SWEP.FatalHeadshot			= false
 
 SWEP.DamageFalloff			= 2000
 

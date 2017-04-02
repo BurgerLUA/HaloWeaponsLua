@@ -63,7 +63,7 @@ SWEP.ShowWorldModel         = false
 SWEP.DamageFalloff			= 50
 SWEP.MeleeRange				= 50
 SWEP.MeleeDamageType		= DMG_ENERGYBEAM
-SWEP.MeleeDelay				= 0.2
+SWEP.MeleeDelay				= 0.15
 
 
 SWEP.ViewModelBoneMods = {
@@ -163,7 +163,7 @@ function SWEP:PrimaryAttack()
 			self.Owner:SetVelocity( (self.Owner:GetPos() - HitEntity:GetPos()):Angle():Forward()*-2000 )
 		end
 		
-		local Swing = self:NewSwing(self.Primary.Damage,HitEntity,0.1)
+		local Swing = self:NewSwing(self.Primary.Damage,self.Primary.Delay,HitEntity,self.MeleeDelay)
 		if Swing and (Swing:IsPlayer() or Swing:IsNPC()) then
 			self:AddDurability(-10)
 		end
@@ -178,7 +178,7 @@ function SWEP:PrimaryAttack()
 		self:SetNextPrimaryFire(CurTime() + self.Primary.Delay)
 		self:SetNextSecondaryFire(CurTime() + self.Primary.Delay)
 		
-		local Swing = self:NewSwing(self.Primary.Damage)
+		local Swing = self:NewSwing(self.Primary.Damage,self.Primary.Delay)
 		if Swing and (Swing:IsPlayer() or Swing:IsNPC()) then
 			self:AddDurability(-10)
 		end
@@ -199,7 +199,7 @@ function SWEP:SecondaryAttack()
 	self:SetNextPrimaryFire(CurTime() + self.Secondary.Delay)
 	self:SetNextSecondaryFire(CurTime() + self.Secondary.Delay)
 	
-	local Swing = self:NewSwing(self.Primary.Damage)
+	local Swing = self:NewSwing(self.Primary.Damage,self.Secondary.Delay)
 	if Swing and (Swing:IsPlayer() or Swing:IsNPC()) then
 		self:AddDurability(-10)
 	end
@@ -248,6 +248,13 @@ function SWEP:AddDurability(amount)
 	
 end
 
+function SWEP:BlockDamage(damage,attacker)
+	self.Owner:DoAnimationEvent( ACT_GMOD_GESTURE_MELEE_SHOVE_1HAND )
+	self:SendWeaponAnim(ACT_VM_HITCENTER)
+	
+	self:SetNextPrimaryFire(CurTime() + self.Primary.Delay)
+	self:SetNextSecondaryFire(CurTime() + self.Primary.Delay)
+end
 
 
 
