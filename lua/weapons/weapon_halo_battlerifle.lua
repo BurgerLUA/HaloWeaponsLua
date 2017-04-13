@@ -22,10 +22,10 @@ SWEP.WorldModel				= Model("models/weapons/w_irifle.mdl")
 SWEP.VModelFlip 			= false
 SWEP.HoldType				= "ar2"
 
-SWEP.Primary.Damage			= 35
+SWEP.Primary.Damage			= 30
 SWEP.Primary.NumShots		= 1
 SWEP.Primary.Sound			= nil
-SWEP.Primary.Cone			= 0
+SWEP.Primary.Cone			= 0.0025
 SWEP.Primary.ClipSize		= 36
 SWEP.Primary.SpareClip		= 36*2
 SWEP.Primary.Delay			= 1/(600/60)
@@ -34,11 +34,13 @@ SWEP.Primary.Automatic 		= false
 
 SWEP.BurstSound 			= Sound("halo2/battle/1.wav")
 
-SWEP.RecoilMul				= 0.75
+SWEP.RecoilMul				= 0.25
 SWEP.SideRecoilMul			= 0.25
-SWEP.MoveConeMul			= 1
-SWEP.HeatMul				= 0.5
-SWEP.CoolMul				= 0.5
+SWEP.RecoilSpeedMul			= 1
+SWEP.MoveConeMul			= 0
+SWEP.HeatMul				= 0
+SWEP.CoolMul				= 1
+SWEP.CoolSpeedMul			= 1
 
 SWEP.HasScope 				= true
 SWEP.ZoomAmount 			= 3
@@ -83,6 +85,10 @@ SWEP.ReloadTimeAdd			= -0.3
 SWEP.ShowWorldModel         = false
 
 SWEP.AlwaysBurst			= true
+
+SWEP.CanShootWhileSprinting = false
+SWEP.IronRunPos				= Vector(0,0,-10)
+SWEP.IronRunAng				= Vector(30,10,0)
 
 SWEP.DisplayModel		= Model("models/brifle_h2.mdl")
 
@@ -136,10 +142,6 @@ function SWEP:DrawSpecial(ConeToSend)
 		surface.SetMaterial(self.Variable01)
 		surface.DrawTexturedRectRotated(XRound,YRound,32,32,0)
 		
-		surface.SetMaterial(self.Variable02)
-		surface.SetDrawColor(Color(255,0,0,math.min(100,0 + ConeToSend*2)))
-		surface.DrawTexturedRectRotated(XRound,YRound,32 + ConeToSend,32 + ConeToSend,0)
-		
 		if TargetBone then
 			if TargetHead:Distance(HitPos) <= 8 then
 				surface.DrawCircle(XRound,YRound,0.25, Color(255,0,0,150) )
@@ -151,10 +153,6 @@ function SWEP:DrawSpecial(ConeToSend)
 		surface.SetDrawColor(Color(0,255,255,150))
 		surface.SetMaterial(self.Variable01)
 		surface.DrawTexturedRectRotated(XRound,YRound,32,32,0)
-		
-		surface.SetMaterial(self.Variable02)
-		surface.SetDrawColor(Color(0,255,255,math.min(100,0 + ConeToSend*2)))
-		surface.DrawTexturedRectRotated(XRound,YRound,32 + ConeToSend,32 + ConeToSend,0)
 		
 	end
 	

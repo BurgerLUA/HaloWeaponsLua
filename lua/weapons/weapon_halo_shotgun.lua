@@ -22,8 +22,8 @@ SWEP.WorldModel				= Model("models/weapons/w_shotgun.mdl")
 SWEP.VModelFlip 			= false
 SWEP.HoldType				= "ar2"
 
-SWEP.Primary.Damage			= 150/12
-SWEP.Primary.NumShots		= 12
+SWEP.Primary.Damage			= 150/6
+SWEP.Primary.NumShots		= 6
 SWEP.Primary.Sound			= Sound("halo2/shotgun/shot1.wav")
 SWEP.Primary.Cone			= 0.03
 SWEP.Primary.ClipSize		= 12
@@ -32,11 +32,13 @@ SWEP.Primary.Delay			= 0.9
 SWEP.Primary.Ammo			= "bb_12gauge"
 SWEP.Primary.Automatic 		= true
 
-SWEP.RecoilMul				= 0.1
+SWEP.RecoilMul				= 0.05
 SWEP.SideRecoilMul			= 0.1
-SWEP.MoveConeMul				= 0
+SWEP.RecoilSpeedMul			= 0.75
+SWEP.MoveConeMul			= 0
 SWEP.HeatMul				= 0
 SWEP.CoolMul				= 1
+SWEP.CoolSpeedMul			= 1
 
 SWEP.HasScope 				= false
 SWEP.ZoomAmount 			= 0.25
@@ -69,6 +71,10 @@ SWEP.DamageFalloff			= 100
 SWEP.TracerNames 			= {"h2_shotty_muzzle"}
 
 SWEP.ShowWorldModel         = false
+
+SWEP.CanShootWhileSprinting = false
+SWEP.IronRunPos				= Vector(0,-10,-20)
+SWEP.IronRunAng				= Vector(45,0,0)
 
 SWEP.DisplayModel		= Model("models/hshotgun.mdl")
 

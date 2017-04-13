@@ -22,21 +22,23 @@ SWEP.WorldModel				= Model("models/weapons/w_irifle.mdl")
 SWEP.VModelFlip 			= false
 SWEP.HoldType				= "ar2"
 
-SWEP.Primary.Damage			= 35
+SWEP.Primary.Damage			= 55
 SWEP.Primary.NumShots		= 1
 SWEP.Primary.Sound			= Sound("halo2/covenant carbine/fire1.wav")
-SWEP.Primary.Cone			= 0
+SWEP.Primary.Cone			= 0.0025
 SWEP.Primary.ClipSize		= 18
 SWEP.Primary.SpareClip		= 18*5
-SWEP.Primary.Delay			= 1/(350/60)
+SWEP.Primary.Delay			= 1/(250/60)
 SWEP.Primary.Ammo			= "bb_357sig"
 SWEP.Primary.Automatic 		= false
 
 SWEP.RecoilMul				= 0.5
 SWEP.SideRecoilMul			= 0.1
-SWEP.MoveConeMul			= 0.75
-SWEP.HeatMul				= 0.5
-SWEP.CoolMul				= 1
+SWEP.RecoilSpeedMul			= 1
+SWEP.MoveConeMul			= 0
+SWEP.HeatMul				= 0
+SWEP.CoolMul				= 0
+SWEP.CoolSpeedMul			= 1
 
 SWEP.HasScope 				= true
 SWEP.ZoomAmount 			= 3
@@ -55,8 +57,8 @@ SWEP.HasSpecialFire			= false
 SWEP.HasIronSights 			= true
 SWEP.EnableIronCross		= true
 SWEP.HasGoodSights			= false
-SWEP.IronSightTime			= 0
-SWEP.IronSightsPos 			= Vector(-4, -100, -3)
+SWEP.IronSightTime			= 0.5
+SWEP.IronSightsPos 			= Vector(-4, -10, -3)
 SWEP.IronSightsAng 			= Vector(0, 0, 0)
 
 SWEP.FatalHeadshot			= false
@@ -81,6 +83,11 @@ SWEP.ZoomInSound			= Sound("halo2/covenant carbine/carbine_zoom_in.wav")
 SWEP.ZoomOutSound			= Sound("halo2/covenant carbine/carbine_zoom_out.wav")
 
 SWEP.ReloadTimeAdd			= -0.3
+
+SWEP.CanShootWhileSprinting = false
+SWEP.IronRunPos				= Vector(0,-10,-20)
+SWEP.IronRunAng				= Vector(45,0,0)
+
 
 SWEP.DisplayModel		= Model("models/carbine_h2.mdl")
 
@@ -117,10 +124,6 @@ function SWEP:DrawSpecial(ConeToSend)
 		surface.SetMaterial(self.Variable01)
 		surface.DrawTexturedRectRotated(XRound,YRound,32,32,0)
 		
-		surface.SetMaterial(self.Variable01)
-		surface.SetDrawColor(Color(255,0,0,math.min(100,0 + ConeToSend*2)))
-		surface.DrawTexturedRectRotated(XRound,YRound,32 + ConeToSend,32 + ConeToSend,0)
-		
 		if TargetBone then
 			if TargetHead:Distance(HitPos) <= 8 then
 				surface.DrawCircle(XRound,YRound,0.25, Color(255,0,0,150) )
@@ -132,11 +135,7 @@ function SWEP:DrawSpecial(ConeToSend)
 		surface.SetDrawColor(Color(0,255,255,150))
 		surface.SetMaterial(self.Variable01)
 		surface.DrawTexturedRectRotated(XRound,YRound,32,32,0)
-		
-		surface.SetMaterial(self.Variable01)
-		surface.SetDrawColor(Color(0,255,255,math.min(100,0 + ConeToSend*2)))
-		surface.DrawTexturedRectRotated(XRound,YRound,32 + ConeToSend,32 + ConeToSend,0)
-		
+
 	end
 	
 	

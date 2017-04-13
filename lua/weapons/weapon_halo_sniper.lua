@@ -34,9 +34,11 @@ SWEP.Primary.Automatic 		= false
 
 SWEP.RecoilMul				= 0.25
 SWEP.SideRecoilMul			= 0.1
+SWEP.RecoilSpeedMul			= 1
 SWEP.MoveConeMul			= 0
 SWEP.HeatMul				= 0
 SWEP.CoolMul				= 0
+SWEP.CoolSpeedMul			= 1
 
 SWEP.HasScope 				= true
 SWEP.ZoomAmount 			= 4
@@ -70,7 +72,11 @@ SWEP.FatalHeadshot			= true
 
 SWEP.DamageFalloff			= 8000
 
-SWEP.EnableCustomTracer 	= true
+SWEP.CanShootWhileSprinting = false
+SWEP.IronRunPos				= Vector(0,-10,-20)
+SWEP.IronRunAng				= Vector(45,0,0)
+
+SWEP.EnableCustomTracer 	= false
 SWEP.CustomShootEffectsTable = {"h2_sniper_muzzle_effect","carbine_effect_ricochet"}
 
 SWEP.CustomScope			= Material("scopeutra/halo2_sniper")

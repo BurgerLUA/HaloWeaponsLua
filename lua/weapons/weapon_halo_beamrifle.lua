@@ -34,9 +34,11 @@ SWEP.Primary.Automatic 		= false
 
 SWEP.RecoilMul				= 0.25
 SWEP.SideRecoilMul			= 0.1
-SWEP.MoveConeMul				= 0
+SWEP.RecoilSpeedMul			= 0.75
+SWEP.MoveConeMul			= 0
 SWEP.HeatMul				= 0
 SWEP.CoolMul				= 0
+SWEP.CoolSpeedMul			= 1
 
 SWEP.HasScope 				= true
 SWEP.ZoomAmount 			= 4
@@ -55,9 +57,11 @@ SWEP.HasSpecialFire			= true
 SWEP.HasIronSights 			= false
 SWEP.EnableIronCross		= true
 SWEP.HasGoodSights			= false
-SWEP.IronSightTime			= 0.125
+SWEP.IronSightTime			= 0.5
 SWEP.IronSightsPos 			= Vector(-3.75 - 0.075, 0, 1.5 - 0.15)
 SWEP.IronSightsAng 			= Vector(0, 0, 0)
+
+SWEP.ZoomDelay				= 0.125
 
 SWEP.ZoomInSound			= Sound("halo2/beam_rifle/beam rifle scope in x1.mp3")
 SWEP.ZoomOutSound			= Sound("halo2/beam_rifle/beam rifle scope out.mp3")
@@ -74,16 +78,19 @@ SWEP.EnableCustomTracer 	= false
 SWEP.CustomShootEffectsTable 			= {"beam_rifle_effect","h2_beam_rifle_muzzle","h2_beam_rifle_beam"}
 
 SWEP.CustomScope			= Material("scopeutra/beam_rifle")
-SWEP.CustomScopeCOverride	= Color(255,255,0,255)
+SWEP.CustomScopeCOverride	= Color(255,255,255,255)
 
 SWEP.ShowWorldModel         = false
 
-SWEP.DisplayModel		= Model("models/beamrifle_h2.mdl")
+SWEP.DisplayModel			= Model("models/beamrifle_h2.mdl")
 
 SWEP.UsesBuildUp			= true
 SWEP.BuildUpAmount 			= 33
 SWEP.BuildUpCoolAmount 		= 20
 
+SWEP.CanShootWhileSprinting = false
+SWEP.IronRunPos				= Vector(0,-10,-20)
+SWEP.IronRunAng				= Vector(45,0,0)
 
 SWEP.WElements = {
 	["beam rifle"] = { type = "Model", model = "models/beamrifle_h2.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(2.703, 0.87, -3.257), angle = Angle(-73.243, -178.732, -86.88), size = Vector(0.992, 0.992, 0.992), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }

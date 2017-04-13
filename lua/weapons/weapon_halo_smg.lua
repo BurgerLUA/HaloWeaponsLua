@@ -34,9 +34,11 @@ SWEP.Primary.Automatic 		= true
 
 SWEP.RecoilMul				= 1
 SWEP.SideRecoilMul			= 0.1
+SWEP.RecoilSpeedMul			= 1
 SWEP.MoveConeMul			= 0
-SWEP.HeatMul				= 3
-SWEP.CoolMul				= 0.26
+SWEP.HeatMul				= 0
+SWEP.CoolMul				= 0
+SWEP.CoolSpeedMul			= 1
 
 SWEP.HasScope 				= false
 SWEP.ZoomAmount 			= 0.5
@@ -73,6 +75,10 @@ SWEP.GetMagModel 			= Model("models/smgh2_ammo.mdl")
 SWEP.MagDelayMod			= 0.25
 SWEP.MagMoveMod 			= Vector(-200,0,0)
 SWEP.MagAngMod				= Angle(0,90,0)
+
+SWEP.CanShootWhileSprinting = false
+SWEP.IronRunPos				= Vector(0,0,0)
+SWEP.IronRunAng				= Vector(0,0,0)
 
 SWEP.DisplayModel		= Model("models/smgh2.mdl")
 
