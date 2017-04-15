@@ -22,7 +22,7 @@ SWEP.WorldModel				= "models/weapons/w_smg1.mdl"
 SWEP.VModelFlip 			= false
 SWEP.HoldType				= "smg"
 
-SWEP.Primary.Damage			= 15
+SWEP.Primary.Damage			= 12
 SWEP.Primary.NumShots		= 1
 SWEP.Primary.Sound			= Sound("halo2/smg/smg_h2_1.wav")
 SWEP.Primary.Cone			= 0.02
@@ -76,7 +76,7 @@ SWEP.MagDelayMod			= 0.25
 SWEP.MagMoveMod 			= Vector(-200,0,0)
 SWEP.MagAngMod				= Angle(0,90,0)
 
-SWEP.CanShootWhileSprinting = false
+SWEP.CanShootWhileSprinting = true
 SWEP.IronRunPos				= Vector(0,0,0)
 SWEP.IronRunAng				= Vector(0,0,0)
 
