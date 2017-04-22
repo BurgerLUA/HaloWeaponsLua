@@ -57,7 +57,7 @@ SWEP.HasSpecialFire			= true
 SWEP.HasIronSights 			= false
 SWEP.EnableIronCross		= true
 SWEP.HasGoodSights			= false
-SWEP.IronSightTime			= 0.125
+SWEP.IronSightTime			= 0.5
 SWEP.IronSightsPos 			= Vector(-3.75 - 0.075, 0, 1.5 - 0.15)
 SWEP.IronSightsAng 			= Vector(0, 0, 0)
 
@@ -66,7 +66,7 @@ SWEP.ZoomOutSound			= Sound("halo2/sniper/zoom_out.wav")
 
 SWEP.ReloadTimeAdd			= -0.3
 
-SWEP.ColorOverlay			= Color(0,255,0,20)
+--SWEP.ColorOverlay			= Color(0,255,0,20)
 
 SWEP.FatalHeadshot			= true
 
@@ -80,7 +80,7 @@ SWEP.EnableCustomTracer 	= false
 SWEP.CustomShootEffectsTable = {"h2_sniper_muzzle_effect","carbine_effect_ricochet"}
 
 SWEP.CustomScope			= Material("scopeutra/halo2_sniper")
-SWEP.CustomScopeCOverride	= Color(0,255,255,100)
+SWEP.CustomScopeCOverride	= Color(0,255,255,127)
 
 SWEP.GetMagModel 			= Model("models/weapons/unloaded/snip_awp_mag.mdl")
 SWEP.MagDelayMod			= 0.25
@@ -88,6 +88,9 @@ SWEP.MagDelayMod			= 0.25
 SWEP.ShowWorldModel         = false
 
 SWEP.DisplayModel		= Model("models/sniper_rifle_h2.mdl")
+
+SWEP.EnableDefaultScope		= false
+SWEP.CustomScopeSizeMul		= 2
 
 SWEP.ViewModelBoneMods = {
 	["body"] = { scale = Vector(1, 1, 1), pos = Vector(-7.112, -0.179, -0.271), angle = Angle(0, 0, 0) }

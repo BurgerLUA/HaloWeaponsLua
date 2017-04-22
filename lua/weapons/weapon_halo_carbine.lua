@@ -88,6 +88,9 @@ SWEP.CanShootWhileSprinting = false
 SWEP.IronRunPos				= Vector(0,-10,-20)
 SWEP.IronRunAng				= Vector(45,0,0)
 
+SWEP.EnableDefaultScope		= false
+SWEP.CustomScopeSizeMul		= 2
+
 
 SWEP.DisplayModel		= Model("models/carbine_h2.mdl")
 

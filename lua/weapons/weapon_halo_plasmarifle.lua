@@ -12,7 +12,7 @@ SWEP.WeaponType				= "Primary"
 SWEP.Cost					= 3500
 SWEP.CSSMoveSpeed			= 230
 
-SWEP.Spawnable				= false
+SWEP.Spawnable				= true
 SWEP.AdminOnly				= false
 
 SWEP.Slot					= 2
@@ -23,20 +23,20 @@ SWEP.WorldModel				= "models/weapons/w_pistol.mdl"
 SWEP.VModelFlip 			= false
 SWEP.HoldType				= "revolver"
 
-SWEP.Primary.Damage			= 20
+SWEP.Primary.Damage			= 35
 SWEP.Primary.NumShots		= 1
-SWEP.Primary.Sound			= NULL
-SWEP.Primary.Cone			= 0.0075
+SWEP.Primary.Sound			= Sound("halo2/plasmarifle/fire.wav")
+SWEP.Primary.Cone			= 0.01
 SWEP.Primary.ClipSize		= 200
 SWEP.Primary.SpareClip		= 0
-SWEP.Primary.Delay			= ( 1/(360/60) )
+SWEP.Primary.Delay			= ( 1/(350/60) )
 SWEP.Primary.Ammo			= "smod_weeb"
 SWEP.Primary.Automatic 		= true
 
 SWEP.RecoilMul				= 0.125
 SWEP.SideRecoilMul			= 1
 SWEP.MoveConeMul				= 0.75
-SWEP.HeatMul				= 1
+SWEP.HeatMul				= 0
 SWEP.CoolMul				= 0.5
 
 SWEP.HasScope 				= false
@@ -49,8 +49,8 @@ SWEP.HasBoltAction 			= false
 SWEP.HasBurstFire 			= false
 SWEP.HasSilencer 			= false
 SWEP.HasDoubleZoom			= false
-SWEP.HasSideRecoil			= true
-SWEP.HasDownRecoil			= true
+SWEP.HasSideRecoil			= false
+SWEP.HasDownRecoil			= false
 SWEP.HasDryFire				= false
 SWEP.HasSpecialFire			= true
 
@@ -69,7 +69,7 @@ SWEP.TracerName				= nil
 SWEP.TracerNames 			= {"h2_prifle_muzzle","plasma_rifle_effect"}
 
 SWEP.BulletEnt				= "ent_halo_blueplasma"
-SWEP.SourceOverride			= Vector(2,-20,-3)
+SWEP.SourceOverride			= Vector(0,-5,-5)
 
 SWEP.MeleeDamageType		= DMG_CLUB
 SWEP.MeleeRange				= 40
@@ -139,6 +139,27 @@ function SWEP:SpareThink()
 end
 
 SWEP.Variable01 = Material("crosshair/plasma_rifle")
+
+local DefaultMaterial = Material("sprites/physg_glow1")
+
+SWEP.UseSpecialProjectile	= true
+SWEP.SourceOverride = Vector(3,0,-5)
+
+function SWEP:ModProjectileTable(datatable)
+
+	datatable.direction = datatable.direction*1000
+	datatable.hullsize = 1
+	datatable.resistance = Vector(0,0,0)
+	datatable.dietime = CurTime() + 10
+	
+	datatable.drawfunction = function(datatable)
+		render.SetMaterial( DefaultMaterial )
+		render.DrawSprite( datatable.pos,16,16,Color(0,255,255,255) )
+	end
+
+	return datatable
+
+end
 
 function SWEP:DrawSpecial(ConeToSend)
 

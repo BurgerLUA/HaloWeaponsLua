@@ -92,6 +92,9 @@ SWEP.IronRunAng				= Vector(30,10,0)
 
 SWEP.DisplayModel		= Model("models/brifle_h2.mdl")
 
+SWEP.EnableDefaultScope		= false
+SWEP.CustomScopeSizeMul		= 2
+
 SWEP.ViewModelBoneMods = {
 	["ValveBiped.Bip01_L_UpperArm"] = { scale = Vector(1, 1, 1), pos = Vector(1.246, -0.095, 0.377), angle = Angle(0, 0, 0) },
 	["body"] = { scale = Vector(1, 1, 1), pos = Vector(-6.911, 0, 0), angle = Angle(0, 0, 0) }

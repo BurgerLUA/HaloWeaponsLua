@@ -68,7 +68,7 @@ SWEP.ZoomOutSound			= Sound("halo2/beam_rifle/beam rifle scope out.mp3")
 
 SWEP.ReloadTimeAdd			= -0.3
 
-SWEP.ColorOverlay			= Color(0,255,0,20)
+--SWEP.ColorOverlay			= Color(0,255,0,20)
 
 SWEP.FatalHeadshot			= true
 
@@ -91,6 +91,9 @@ SWEP.BuildUpCoolAmount 		= 20
 SWEP.CanShootWhileSprinting = false
 SWEP.IronRunPos				= Vector(0,-10,-20)
 SWEP.IronRunAng				= Vector(45,0,0)
+
+SWEP.EnableDefaultScope		= false
+SWEP.CustomScopeSizeMul		= 2
 
 SWEP.WElements = {
 	["beam rifle"] = { type = "Model", model = "models/beamrifle_h2.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(2.703, 0.87, -3.257), angle = Angle(-73.243, -178.732, -86.88), size = Vector(0.992, 0.992, 0.992), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
