@@ -22,10 +22,10 @@ SWEP.WorldModel				= "models/weapons/w_smg1.mdl"
 SWEP.VModelFlip 			= false
 SWEP.HoldType				= "smg"
 
-SWEP.Primary.Damage			= 12
+SWEP.Primary.Damage			= 16
 SWEP.Primary.NumShots		= 1
 SWEP.Primary.Sound			= Sound("halo2/smg/smg_h2_1.wav")
-SWEP.Primary.Cone			= 0.02
+SWEP.Primary.Cone			= 0.03
 SWEP.Primary.ClipSize		= 60
 SWEP.Primary.SpareClip		= 60*3
 SWEP.Primary.Delay			= 1/(900/60)
@@ -102,14 +102,16 @@ function SWEP:DrawSpecial(ConeToSend)
 	local TargetEyes = Target:EyePos()
 	local HitPos = EyeTrace.HitPos
 	
+	local CrosshairSize = 64
+	
 	if Target and Target ~= NULL and (Target:IsPlayer() or Target:IsNPC()) then
 		surface.SetDrawColor(Color(255,0,0,150))
 		surface.SetMaterial(self.Variable01)
-		surface.DrawTexturedRectRotated(XRound, YRound,32 + ConeToSend, 32 + ConeToSend,0)
+		surface.DrawTexturedRectRotated(XRound, YRound,CrosshairSize, CrosshairSize,0)
 	else
 		surface.SetDrawColor(Color(0,255,255,150))
 		surface.SetMaterial(self.Variable01)
-		surface.DrawTexturedRectRotated(XRound,YRound,32 + ConeToSend,32 + ConeToSend,0)
+		surface.DrawTexturedRectRotated(XRound,YRound,CrosshairSize,CrosshairSize,0)
 	end
 	
 	

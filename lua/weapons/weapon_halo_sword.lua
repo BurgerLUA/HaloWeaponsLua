@@ -9,7 +9,7 @@ SWEP.Base					= "weapon_burger_core_base"
 SWEP.WeaponType				= "Melee"
 
 SWEP.Cost					= 0
-SWEP.CSSMoveSpeed			= 230
+SWEP.CSSMoveSpeed			= 250
 
 SWEP.Spawnable				= true
 SWEP.AdminOnly				= false

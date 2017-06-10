@@ -151,15 +151,48 @@ function SWEP:ModProjectileTable(datatable)
 	datatable.hullsize = 1
 	datatable.resistance = Vector(0,0,0)
 	datatable.dietime = CurTime() + 10
+	datatable.id = "halo_plasma"
 	
-	datatable.drawfunction = function(datatable)
-		render.SetMaterial( DefaultMaterial )
-		render.DrawSprite( datatable.pos,16,16,Color(0,255,255,255) )
-	end
-
 	return datatable
 
 end
+
+local datatable = {}
+
+datatable.drawfunction = function(datatable)
+	render.SetMaterial( DefaultMaterial )
+	render.DrawSprite( datatable.pos,16,16,Color(0,255,255,255) )
+end
+
+datatable.hitfunction = function(datatable,traceresult)
+
+	local Victim = traceresult.Entity
+	local Attacker = datatable.owner
+	local Inflictor = datatable.weapon
+	
+	if not IsValid(Attacker) then
+		Attacker = Victim
+	end
+	
+	if not IsValid(Inflictor) then
+		Inflictor = Attacker
+	end
+	
+	if Victim and Victim ~= NULL then
+		local DmgInfo = DamageInfo()
+		DmgInfo:SetDamage( datatable.damage )
+		DmgInfo:SetAttacker( Attacker )
+		DmgInfo:SetInflictor( Inflictor )
+		DmgInfo:SetDamageForce( datatable.direction:GetNormalized() )
+		DmgInfo:SetDamagePosition( datatable.pos )
+		DmgInfo:SetDamageType( DMG_PLASMA )
+		traceresult.Entity:DispatchTraceAttack( DmgInfo, traceresult )
+	end
+		
+end
+
+BURGERBASE_RegisterProjectile("halo_plasma",datatable)
+
 
 function SWEP:DrawSpecial(ConeToSend)
 
