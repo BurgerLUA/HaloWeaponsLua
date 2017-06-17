@@ -11,24 +11,26 @@ SWEP.WeaponType				= "Secondary"
 SWEP.Cost					= 1337
 SWEP.CSSMoveSpeed			= 220
 
-SWEP.Spawnable				= false
+SWEP.Spawnable				= true
 SWEP.AdminOnly				= false
 
 SWEP.Slot					= 2 - 1
 SWEP.SlotPos				= 1
 
-SWEP.ViewModel 				= "models/weapons/v_halo_2_magnum.mdl"
-SWEP.WorldModel				= "models/weapons/w_pistol.mdl"
+SWEP.ViewModel = "models/weapons/cstrike/c_pist_deagle.mdl"
+SWEP.WorldModel = "models/weapons/w_pistol.mdl"
 SWEP.VModelFlip 			= false
 SWEP.HoldType				= "pistol"
 
-SWEP.Primary.Damage			= 25
+
+
+SWEP.Primary.Damage			= 45
 SWEP.Primary.NumShots		= 1
 SWEP.Primary.Sound			= Sound("halo2/magnum/fire1.wav")
 SWEP.Primary.Cone			= 0.005
 SWEP.Primary.ClipSize		= 12
 SWEP.Primary.SpareClip		= 12*3
-SWEP.Primary.Delay			= 1/(360/60)
+SWEP.Primary.Delay			= 1/(240/60)
 SWEP.Primary.Ammo			= "bb_50ae"
 SWEP.Primary.Automatic 		= false
 
@@ -66,7 +68,7 @@ SWEP.MeleeRange				= 40
 
 SWEP.DamageFalloff			= 2000
 
-SWEP.ReloadSound			= Sound("halo2/magnum/magnum_reload_1.wav")
+--SWEP.ReloadSound			= Sound("halo2/magnum/magnum_reload_1.wav")
 
 SWEP.DisplayModel		= Model("models/magnum_h2.mdl")
 
@@ -89,6 +91,17 @@ SWEP.WElements = {
 		bodygroup = {} 
 	}
 }
+
+SWEP.VElements = {
+	["weapon"] = { type = "Model", model = "models/magnum_h2.mdl", bone = "v_weapon.Deagle_Parent", rel = "", pos = Vector(0, 0, 0), angle = Angle(0, 90, -90), size = Vector(1, 1, 1), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
+}
+
+SWEP.ViewModelBoneMods = {
+	["v_weapon.Deagle_Parent"] = { scale = Vector(0.009, 0.009, 0.009), pos = Vector(0, 0, 0), angle = Angle(0, 0, 0) }
+}
+
+SWEP.ShowViewModel = false
+SWEP.ShowWorldModel = false
 
 SWEP.Variable01 = Material("crosshair/magnum_h2")
 

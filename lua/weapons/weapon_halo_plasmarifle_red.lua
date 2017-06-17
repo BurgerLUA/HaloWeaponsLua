@@ -5,7 +5,7 @@ if CLIENT then
 end
 
 SWEP.Category				= "Halo 2 Weapons"
-SWEP.PrintName				= "Plasma Rifle"
+SWEP.PrintName				= "Brute Plasma Rifle"
 SWEP.Base					= "weapon_burger_core_base"
 SWEP.WeaponType				= "Primary"
 
@@ -18,18 +18,18 @@ SWEP.AdminOnly				= false
 SWEP.Slot					= 2
 SWEP.SlotPos				= 1
 
-SWEP.ViewModel 				= "models/weapons/c_halo_2_prifle.mdl"
+SWEP.ViewModel 				= "models/weapons/c_halo_2_prifle_brute.mdl"
 SWEP.WorldModel				= "models/weapons/w_pistol.mdl"
 SWEP.VModelFlip 			= false
 SWEP.HoldType				= "revolver"
 
-SWEP.Primary.Damage			= 30
+SWEP.Primary.Damage			= 25
 SWEP.Primary.NumShots		= 1
 SWEP.Primary.Sound			= Sound("halo2/plasmarifle/fire.wav")
 SWEP.Primary.Cone			= 0.01
 SWEP.Primary.ClipSize		= 200
 SWEP.Primary.SpareClip		= 0
-SWEP.Primary.Delay			= ( 1/(375/60) )
+SWEP.Primary.Delay			= ( 1/(500/60) )
 SWEP.Primary.Ammo			= "smod_weeb"
 SWEP.Primary.Automatic 		= true
 
@@ -70,7 +70,6 @@ SWEP.TracerNames 			= {"h2_prifle_muzzle","plasma_rifle_effect"}
 
 SWEP.BulletEnt				= "ent_halo_blueplasma"
 SWEP.UseMuzzle				= true
-
 --SWEP.SourceOverride			= Vector(0,-5,-5)
 
 SWEP.MeleeDamageType		= DMG_CLUB
@@ -85,7 +84,7 @@ SWEP.UsesBuildUp			= true
 SWEP.BuildUpAmount 			= 5.5
 SWEP.BuildUpCoolAmount 		= 20
 
-SWEP.DisplayModel		= Model("models/prifle2.mdl")
+SWEP.DisplayModel		= Model("models/prifle2_red.mdl")
 
 SWEP.ShowWorldModel			= false
 SWEP.ViewModelBoneMods = {
@@ -102,7 +101,7 @@ SWEP.VElements = {
 	["cap_left+"] = { type = "Model", model = "models/props_combine/combine_fence01b.mdl", bone = "cap_right", rel = "", pos = Vector(-0.02, 0.344, -0.079), angle = Angle(89.76, 180, 180), size = Vector(0.035, 0.07, 0.035), color = Color(255, 255, 255, 0), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
 }
 SWEP.WElements = {
-	["plasmarifle"] = { type = "Model", model = "models/prifle2.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(3.746, 0.805, -0.564), angle = Angle(-102.999, -8.143, 87.059), size = Vector(0.931, 0.931, 0.931), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
+	["plasmarifle"] = { type = "Model", model = "models/prifle2_red.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(3.746, 0.805, -0.564), angle = Angle(-102.999, -8.143, 87.059), size = Vector(0.931, 0.931, 0.931), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
 }
 
 function SWEP:SpecialFire()
@@ -149,11 +148,11 @@ SWEP.SourceOverride = Vector(3,0,-5)
 
 function SWEP:ModProjectileTable(datatable)
 
-	datatable.direction = datatable.direction*1000
-	datatable.hullsize = 0.25
-	datatable.resistance = Vector(0,0,0)
-	datatable.dietime = CurTime() + 10
-	datatable.id = "halo_plasma"
+	datatable.direction = datatable.direction*2000
+	datatable.hullsize = 0.125
+	datatable.resistance = Vector(math.random(-100,100),math.random(-100,100),math.random(-100,100))
+	datatable.dietime = CurTime() + 5
+	datatable.id = "halo_plasma_red"
 	
 	return datatable
 
@@ -163,7 +162,8 @@ local datatable = {}
 
 datatable.drawfunction = function(datatable)
 	render.SetMaterial( DefaultMaterial )
-	render.DrawSprite( datatable.pos,16,16,Color(0,255,255,255) )
+	render.DrawSprite( datatable.pos,32,32,Color(255,100,100,255) )
+	render.DrawSprite( datatable.pos,8,8,Color(255,0,0,255) )
 end
 
 datatable.hitfunction = function(datatable,traceresult)
@@ -193,7 +193,7 @@ datatable.hitfunction = function(datatable,traceresult)
 		
 end
 
-BURGERBASE_RegisterProjectile("halo_plasma",datatable)
+BURGERBASE_RegisterProjectile("halo_plasma_red",datatable)
 
 
 function SWEP:DrawSpecial(ConeToSend)
